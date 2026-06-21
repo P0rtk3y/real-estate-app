@@ -1,0 +1,46 @@
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { Bell, Settings, Home } from 'lucide-react'
+
+export default function Navigation() {
+  const pathname = usePathname()
+
+  const links = [
+    { href: '/', label: 'Scout', icon: Home },
+    { href: '/preferences', label: 'Preferences', icon: Settings },
+    { href: '/alerts', label: 'Alerts', icon: Bell },
+  ]
+
+  return (
+    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+            <span className="text-2xl">🌸</span>
+            <span className="text-rose-600">Lan</span>
+            <span className="text-teal-600">Scout</span>
+            <span className="text-xs font-normal text-gray-400 hidden sm:inline ml-1">chị ấy tìm nhà cho bạn ✨</span>
+          </Link>
+
+          <div className="flex items-center gap-1">
+            {links.map(({ href, label, icon: Icon }) => (
+              <Link
+                key={href}
+                href={href}
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  pathname === href
+                    ? 'bg-rose-50 text-rose-700'
+                    : 'text-gray-600 hover:text-rose-600 hover:bg-gray-50'
+                }`}
+              >
+                <Icon className="w-4 h-4" />
+                <span className="hidden sm:inline">{label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </nav>
+  )
+}
