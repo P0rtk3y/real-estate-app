@@ -11,7 +11,7 @@ export default function Home() {
       >
         {/* Mobile layout */}
         <div className="sm:hidden flex flex-col items-center pt-6 pb-8 px-5">
-          <LanCharacter className="w-64 h-64 object-contain drop-shadow-2xl" fallbackSize="text-8xl" />
+          <LanCharacter className="w-64 h-64 object-contain drop-shadow-2xl" fallbackSize="text-8xl" animated showChat />
 
           <h1 className="text-3xl font-black text-center leading-tight mb-2">
             Find your<br />
@@ -31,7 +31,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 bg-white/15 border border-white/20 rounded-full px-4 py-1.5 text-sm font-semibold text-white/90 mb-4">
               <span>Hi, I&apos;m</span>
               <span className="font-display text-base" style={{ color: '#FFD700' }}>Lan</span>
-              <span>🥖 Your Vietnamese Property Scout</span>
+              <span>🥖 Your Personal Property Scout</span>
             </div>
 
             <h1 className="text-5xl lg:text-6xl font-black mb-4 leading-tight">
@@ -49,7 +49,7 @@ export default function Home() {
           </div>
 
           <div className="flex-shrink-0 w-80">
-            <LanCharacter className="w-full drop-shadow-2xl" />
+            <LanCharacter className="w-full drop-shadow-2xl" animated showChat />
           </div>
         </div>
       </div>
