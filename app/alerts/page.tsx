@@ -73,9 +73,9 @@ export default function AlertsPage() {
     <div className="max-w-3xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">🌸 Lan&apos;s Watch List</h1>
+          <h1 className="text-2xl font-bold text-gray-900">🌸 Bao&apos;s Watch List</h1>
           <p className="text-gray-500 text-sm mt-1">
-            {activeAlerts.length > 0 ? `${activeAlerts.length} active — Lan is watching these cities like a hawk! 🦅` : 'Tell Lan which cities to keep her eye on 🔍'}
+            {activeAlerts.length > 0 ? `${activeAlerts.length} active — Bao is watching these cities like a hawk! 🦅` : 'Tell Bao which cities to keep her eye on 🔍'}
           </p>
         </div>
         <button
@@ -128,7 +128,7 @@ export default function AlertsPage() {
           <div className="text-6xl mb-4">🌸</div>
           <h2 className="text-xl font-bold text-gray-900 mb-2">No cities yet!</h2>
           <p className="text-gray-500 mb-6 max-w-sm mx-auto">
-            &quot;Tell Lan which cities to watch and she will check in on your schedule — like a very enthusiastic cô ấy who really wants you to find a beautiful home!&quot;
+            &quot;Tell Bao which cities to watch and she will check in on your schedule — like a very enthusiastic cô ấy who really wants you to find a beautiful home!&quot;
           </p>
           <div className="flex items-center justify-center gap-4">
             <button

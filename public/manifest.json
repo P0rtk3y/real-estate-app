@@ -1,7 +1,7 @@
 {
-  "name": "LanScout — Your Vietnamese Property Scout",
-  "short_name": "LanScout",
-  "description": "Lan finds beautiful homes in cities worldwide — with cultural insights, weather, events & food. Được quá!",
+  "name": "BaoScout — Your Personal Property Scout",
+  "short_name": "BaoScout",
+  "description": "Bao finds beautiful homes in cities worldwide — with cultural insights, weather, events & food. Được quá!",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -68,22 +68,22 @@
       "sizes": "1280x900",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "LanScout Home"
+      "label": "BaoScout Home"
     },
     {
       "src": "/screenshots/scout-narrow.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Lan's Scout Report"
+      "label": "Bao's Scout Report"
     }
   ],
   "shortcuts": [
     {
-      "name": "Scout Miami",
-      "short_name": "Miami",
-      "description": "Lan's Miami report",
-      "url": "/scout/miami",
+      "name": "Scout Da Nang",
+      "short_name": "Da Nang",
+      "description": "Bao's Da Nang report",
+      "url": "/scout/da-nang",
       "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
     },
     {
@@ -94,7 +94,7 @@
       "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
     },
     {
-      "name": "Lan's Watch List",
+      "name": "Bao's Watch List",
       "short_name": "Alerts",
       "description": "City alert schedule",
       "url": "/alerts",

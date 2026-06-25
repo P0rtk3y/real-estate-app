@@ -1,5 +1,5 @@
-// LanScout Service Worker — Lan keeps the app fast even when connection is slow!
-const CACHE_NAME = 'lanscout-v1';
+// BaoScout Service Worker — Bao keeps the app fast even when connection is slow!
+const CACHE_NAME = 'baoscout-v2';
 
 // Assets to pre-cache on install
 const PRE_CACHE = [
@@ -43,7 +43,7 @@ self.addEventListener('fetch', (event) => {
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(
       fetch(request).catch(() =>
-        new Response(JSON.stringify({ error: 'Offline — Lan is trying her best!' }), {
+        new Response(JSON.stringify({ error: 'Offline — Bao is trying her best!' }), {
           headers: { 'Content-Type': 'application/json' },
           status: 503,
         })

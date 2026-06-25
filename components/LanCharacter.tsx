@@ -37,7 +37,7 @@ export default function LanCharacter({ className = '', fallbackSize = 'text-8xl'
     <div className="relative inline-flex items-end justify-center">
       <img
         src="/images/lan.png"
-        alt="Lan the Scout"
+        alt="Bao the Scout"
         className={`${className}${animated ? ' lan-animated' : ''}`}
         onError={e => {
           const img = e.target as HTMLImageElement

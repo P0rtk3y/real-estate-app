@@ -7,12 +7,12 @@ export default function OfflinePage() {
         Ồ không! No internet!
       </h1>
       <p className="text-gray-500 max-w-sm leading-relaxed mb-6">
-        Lan is trying to find you a beautiful home but the wifi is not cooperating right now.
+        Bao is trying to find you a beautiful home but the wifi is not cooperating right now.
         Check your connection and she will be right back with new listings, she promises!
       </p>
       <div className="bg-white border border-gray-100 rounded-2xl p-5 max-w-xs shadow-sm">
         <p className="text-sm text-gray-600 leading-relaxed">
-          <span className="font-semibold text-rose-600">Lan&apos;s tip:</span>{' '}
+          <span className="font-semibold text-rose-600">Bao&apos;s tip:</span>{' '}
           In Sài Gòn, when the internet goes down, you go downstairs for phở.
           Consider this a phở break. 🍜
         </p>

@@ -225,6 +225,26 @@ export const FEATURE_LABELS: Record<ListingFeature, { label: string; emoji: stri
 }
 
 export const CITY_EMOJIS: Record<string, string> = {
+  // Bao's hidden gems
+  'da nang': '🌊',
+  batumi: '⛰️',
+  kotor: '⛵',
+  naples: '🌋',
+  split: '🏖️',
+  bled: '🏞️',
+  tbilisi: '🍷',
+  'nha trang': '🌴',
+  porto: '🛵',
+  antalya: '🐚',
+  'da lat': '🌲',
+  palermo: '🍋',
+  thessaloniki: '🏛️',
+  ohrid: '🦢',
+  tirana: '🏔️',
+  valparaiso: '🎨',
+  bergen: '🗻',
+  ljubljana: '🐉',
+  'hoi an': '🏮',
   helsinki: '❄️',
   athens: '🏛️',
   florence: '🎭',

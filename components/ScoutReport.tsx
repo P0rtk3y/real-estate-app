@@ -16,7 +16,7 @@ export default function ScoutReport({ city, insight }: Props) {
           <div className="relative flex-shrink-0">
             <img
               src="/images/lan-avatar.png"
-              alt="Lan"
+              alt="Bao"
               className="w-16 h-16 object-contain drop-shadow-md"
               onError={e => {
                 const img = e.target as HTMLImageElement
@@ -30,13 +30,13 @@ export default function ScoutReport({ city, insight }: Props) {
           </div>
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="font-display text-xl" style={{ color: '#FFD700' }}>Lan&apos;s Scout Report</span>
+              <span className="font-display text-xl" style={{ color: '#FFD700' }}>Bao&apos;s Scout Report</span>
               <span className="text-white/60">·</span>
               <span className="font-bold text-white/90">{city}</span>
               <span className="text-2xl">{insight.emoji}</span>
             </div>
             <p className="text-white/75 text-sm">
-              Lan has scouted this city so you don&apos;t have to 🛵✨
+              Bao has scouted this city so you don&apos;t have to 🛵✨
             </p>
           </div>
         </div>
@@ -44,7 +44,7 @@ export default function ScoutReport({ city, insight }: Props) {
         {/* Verdict */}
         <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4">
           <div className="text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: '#FFD700' }}>
-            🥖 Lan&apos;s Verdict
+            🥖 Bao&apos;s Verdict
           </div>
           <p className="text-white font-medium italic leading-relaxed">&quot;{insight.verdict}&quot;</p>
         </div>
@@ -57,7 +57,7 @@ export default function ScoutReport({ city, insight }: Props) {
           <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
             <MapPin className="w-4 h-4" style={{ color: '#C8281A' }} />
             The Vibe
-            <span className="text-sm font-normal text-gray-400">— according to Lan</span>
+            <span className="text-sm font-normal text-gray-400">— according to Bao</span>
           </h3>
           <div className="text-sm text-gray-700 space-y-3">
             {insight.culturalFlavor.split('\n\n').map((p, i) => (
@@ -70,7 +70,7 @@ export default function ScoutReport({ city, insight }: Props) {
         <div>
           <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
             <Lightbulb className="w-4 h-4 text-amber-500" />
-            Lan&apos;s Scout Tips
+            Bao&apos;s Scout Tips
           </h3>
           <ul className="space-y-3">
             {insight.tips.map((tip, i) => (
@@ -111,7 +111,7 @@ export default function ScoutReport({ city, insight }: Props) {
           <div className="rounded-2xl p-4" style={{ background: 'linear-gradient(135deg, #FFF7ED, #FFEDD5)', border: '1px solid #FDBA74' }}>
             <div className="flex items-center gap-2 mb-2">
               <Utensils className="w-4 h-4 text-orange-600" />
-              <span className="text-xs font-bold text-orange-800 uppercase tracking-wide">Lan Says Must Try</span>
+              <span className="text-xs font-bold text-orange-800 uppercase tracking-wide">Bao Says Must Try</span>
             </div>
             <p className="text-xs text-orange-900 leading-relaxed">{insight.localFood}</p>
           </div>
@@ -127,8 +127,8 @@ export default function ScoutReport({ city, insight }: Props) {
         <div className="border-t border-amber-100 pt-4 flex items-start gap-2">
           <span className="text-lg flex-shrink-0">⚠️</span>
           <p className="text-xs text-gray-400 leading-relaxed">
-            Listings link directly to Realtor.com. LanScout is a search assistant only — always verify details with a licensed real estate agent before making any property decisions.
-            <span className="font-medium" style={{ color: '#C8281A' }}> Lan apologizes in advance</span> — she cannot be held responsible for you falling in love with a penthouse above your budget! 😂
+            Listings link directly to Realtor.com. BaoScout is a search assistant only — always verify details with a licensed real estate agent before making any property decisions.
+            <span className="font-medium" style={{ color: '#C8281A' }}> Bao apologizes in advance</span> — she cannot be held responsible for you falling in love with a penthouse above your budget! 😂
           </p>
         </div>
       </div>

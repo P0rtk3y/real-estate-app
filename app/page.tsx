@@ -18,7 +18,7 @@ export default function Home() {
             <span style={{ color: '#FFD700' }}>dream home</span>, anywhere 🏡
           </h1>
           <p className="text-white/80 text-sm text-center mb-5 max-w-xs leading-relaxed">
-            Lan scouts cities worldwide — culture, weather, food, events, and the best neighborhoods. All in one place.
+            Bao scouts cities worldwide — culture, weather, food, events, and the best neighborhoods. All in one place.
           </p>
           <div className="w-full max-w-sm">
             <CitySearch />
@@ -30,7 +30,7 @@ export default function Home() {
           <div className="flex-1">
             <div className="inline-flex items-center gap-2 bg-white/15 border border-white/20 rounded-full px-4 py-1.5 text-sm font-semibold text-white/90 mb-4">
               <span>Hi, I&apos;m</span>
-              <span className="font-display text-base" style={{ color: '#FFD700' }}>Lan</span>
+              <span className="font-display text-base" style={{ color: '#FFD700' }}>Bao</span>
               <span>Your Personal Property Scout</span>
             </div>
 
@@ -41,7 +41,7 @@ export default function Home() {
             </h1>
 
             <p className="text-white/80 text-lg mb-7 max-w-lg leading-relaxed">
-              Lan scouts cities worldwide — cultural insights, live weather, upcoming events,
+              Bao scouts cities worldwide — cultural insights, live weather, upcoming events,
               food hotspots, and the best neighborhoods. All in one place.
             </p>
 
@@ -56,27 +56,28 @@ export default function Home() {
 
       {/* ── Popular cities ───────────────────────────────────── */}
       <div className="px-4 py-8 max-w-5xl mx-auto">
-        <h2 className="text-base font-black text-gray-900 mb-3 text-center">🥖 Lan&apos;s Favorite Cities</h2>
+        <h2 className="text-base font-black text-gray-900 mb-1 text-center">🥖 Bao&apos;s Hidden Gems</h2>
+        <p className="text-gray-500 text-xs text-center mb-3">Affordable, less-touristy spots with water &amp; mountain views</p>
         <PopularCities />
       </div>
 
-      {/* ── What Lan does ────────────────────────────────────── */}
+      {/* ── What Bao does ────────────────────────────────────── */}
       <div className="border-t py-10 sm:py-14" style={{ background: '#FFF9F0', borderColor: '#F5E6D3' }}>
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-8">
-            <h2 className="text-xl font-black text-gray-900">What Lan Does For You</h2>
-            <p className="text-gray-500 text-sm mt-1">&quot;I work harder than a phở chef at 5am!&quot; — Lan 🥖</p>
+            <h2 className="text-xl font-black text-gray-900">What Bao Does For You</h2>
+            <p className="text-gray-500 text-sm mt-1">&quot;I work harder than a phở chef at 5am!&quot; — Bao 🥖</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { emoji: '🏡', title: 'Real Listings', desc: 'Live properties from Realtor.com — no fake listings, no scams.' },
-              { emoji: '🎨', title: 'Cultural Insights', desc: 'Lan\'s real take on neighborhoods, vibes, and expat life.' },
+              { emoji: '🎨', title: 'Cultural Insights', desc: 'Bao\'s real take on neighborhoods, vibes, and expat life.' },
               { emoji: '🌤️', title: 'Live Weather', desc: 'Current conditions and 5-day forecast so you\'re never surprised.' },
               { emoji: '🎭', title: 'Upcoming Events', desc: 'Concerts, festivals & markets from Ticketmaster.' },
               { emoji: '🍜', title: 'Food Scene', desc: 'Top-rated restaurants via Yelp. The food IS the neighborhood.' },
               { emoji: '🔔', title: 'Smart Alerts', desc: 'Weekly or monthly check-ins on the cities you\'re watching.' },
               { emoji: '🎛️', title: 'Your Preferences', desc: 'Ocean view, gym, rooftop, natural light — filter like Zillow, globally.' },
-              { emoji: '📸', title: 'Always Photos', desc: 'Every listing has photos. Lan refuses to show a home blind.' },
+              { emoji: '📸', title: 'Always Photos', desc: 'Every listing has photos. Bao refuses to show a home blind.' },
               { emoji: '🤖', title: 'Scout Score', desc: 'Each listing gets a % match against your preferences.' },
             ].map(({ emoji, title, desc }) => (
               <div key={title} className="flex gap-3 p-4 rounded-2xl bg-white border border-amber-100 hover:border-amber-300 hover:shadow-md transition-all group">
@@ -96,7 +97,7 @@ export default function Home() {
         <div className="max-w-xl mx-auto">
           <div className="text-4xl mb-3">🥖</div>
           <h2 className="text-2xl font-black text-white mb-3">Ready to Scout?</h2>
-          <p className="text-white/75 mb-5 text-sm">Pick a city and Lan will do the rest.</p>
+          <p className="text-white/75 mb-5 text-sm">Pick a city and Bao will do the rest.</p>
           <CitySearch />
         </div>
       </div>

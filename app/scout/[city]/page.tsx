@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: Props) {
   const { city } = await params
   const cityName = formatCityName(city)
   return {
-    title: `${cityName} — Scouted by Lan 🥖 LanScout`,
-    description: `Lan's real estate report on ${cityName}: cultural insights, weather, events, food, and beautiful properties.`,
+    title: `${cityName} — Scouted by Bao 🥖 BaoScout`,
+    description: `Bao's real estate report on ${cityName}: cultural insights, weather, events, food, and beautiful properties.`,
   }
 }
 
@@ -67,7 +67,7 @@ export default async function ScoutPage({ params }: Props) {
                 <div>
                   <h1 className="text-3xl sm:text-4xl font-black">{cityName}</h1>
                   <p className="text-white/70 text-sm mt-0.5">
-                    🥖 Lan has scouted! · {resolvedListings.length} properties · culture, weather &amp; homes
+                    🥖 Bao has scouted! · {resolvedListings.length} properties · culture, weather &amp; homes
                   </p>
                 </div>
               </div>
@@ -133,7 +133,7 @@ export default async function ScoutPage({ params }: Props) {
 
             {/* Source disclaimer */}
             <div className="rounded-xl p-4 text-sm" style={{ background: '#FFF5ED', border: '1px solid #FDBA74', color: '#7C2D12' }}>
-              <strong>Important:</strong> All listings link directly to Realtor.com. LanScout is a search assistant only
+              <strong>Important:</strong> All listings link directly to Realtor.com. BaoScout is a search assistant only
               — always verify listing details, pricing, and availability with a licensed real estate agent before making
               any property decisions.
             </div>

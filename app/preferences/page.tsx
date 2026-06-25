@@ -74,7 +74,7 @@ export default function PreferencesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">🌸 My Preferences</h1>
-          <p className="text-gray-500 text-sm mt-1">&quot;Tell Lan what you want and she will find it — or tell you honestly that it doesn&apos;t exist!&quot;</p>
+          <p className="text-gray-500 text-sm mt-1">&quot;Tell Bao what you want and she will find it — or tell you honestly that it doesn&apos;t exist!&quot;</p>
         </div>
         <div className="flex gap-2">
           <button

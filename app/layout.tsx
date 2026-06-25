@@ -4,13 +4,13 @@ import Navigation from "@/components/Navigation";
 import ServiceWorkerRegistrar from "@/components/ServiceWorkerRegistrar";
 
 export const metadata: Metadata = {
-  title: "LanScout 🥖 — Your Global Property Scout",
-  description: "Lan is your globe-trotting property scout — searching cities worldwide with cultural insights, local food tips, events, and weather.",
+  title: "BaoScout 🥖 — Your Global Property Scout",
+  description: "Bao is your globe-trotting property scout — searching cities worldwide with cultural insights, local food tips, events, and weather.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "LanScout",
+    title: "BaoScout",
     startupImage: [
       {
         url: "/icons/apple-touch-icon.png",
@@ -60,7 +60,7 @@ export default function RootLayout({
         {/* iOS PWA full-screen */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="LanScout" />
+        <meta name="apple-mobile-web-app-title" content="BaoScout" />
         {/* iOS splash / touch icons */}
         <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
         <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152.png" />
@@ -80,9 +80,9 @@ export default function RootLayout({
         {/* pb-20 on mobile reserves space for fixed bottom tab bar */}
         <main className="flex-1 pb-20 sm:pb-0">{children}</main>
         <footer className="hidden sm:block text-center py-6 text-xs text-gray-400 border-t mt-8" style={{ borderColor: '#F5E6D3', background: '#FFF9F0' }}>
-          <p>🥖 LanScout is a search tool only — always verify listings with a licensed real estate agent!</p>
+          <p>🥖 BaoScout is a search tool only — always verify listings with a licensed real estate agent!</p>
           <p className="mt-1">Listings from Realtor.com · Weather from OpenWeatherMap · Events from Ticketmaster · Dining from Yelp · Photos from Unsplash</p>
-          <p className="mt-1" style={{ color: '#C8281A' }}>Thanks for using LanScout! 🥖</p>
+          <p className="mt-1" style={{ color: '#C8281A' }}>Thanks for using BaoScout! 🥖</p>
         </footer>
         <PWAInstallPrompt />
         <ServiceWorkerRegistrar />
@@ -131,7 +131,7 @@ function PWAInstallPrompt() {
     var div = document.createElement('div');
     div.id = 'lan-install-banner';
     div.style.cssText = 'display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:9999;background:linear-gradient(135deg,#C8281A,#5C1F0A);color:white;border-radius:20px;padding:12px 16px;box-shadow:0 8px 32px rgba(200,40,26,0.4);align-items:center;gap:12px;max-width:360px;width:calc(100% - 32px);font-family:system-ui,sans-serif;';
-    div.innerHTML = '<span style="font-size:24px">🌸</span><div style="flex:1"><div style="font-weight:700;font-size:14px">Install LanScout</div><div style="font-size:12px;opacity:0.85">Add Lan to your home screen!</div></div><button onclick="window._lanInstall()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:white;padding:6px 14px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Install</button><button onclick="window._lanDismissInstall()" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:18px;cursor:pointer;padding:0 4px;line-height:1">&times;</button>';
+    div.innerHTML = '<span style="font-size:24px">🌸</span><div style="flex:1"><div style="font-weight:700;font-size:14px">Install BaoScout</div><div style="font-size:12px;opacity:0.85">Add Bao to your home screen!</div></div><button onclick="window._lanInstall()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:white;padding:6px 14px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Install</button><button onclick="window._lanDismissInstall()" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:18px;cursor:pointer;padding:0 4px;line-height:1">&times;</button>';
     document.body.appendChild(div);
   });
 })();

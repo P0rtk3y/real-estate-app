@@ -3,29 +3,28 @@ import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
 
+// Bao's hidden gems: affordable, less touristy, with water &/or mountain views
 const POPULAR_CITIES = [
-  // Focus regions: Finland, Greece & Italy
+  { city: 'Da Nang', emoji: '🌊', country: 'Vietnam' },
+  { city: 'Batumi', emoji: '⛰️', country: 'Georgia' },
+  { city: 'Kotor', emoji: '⛵', country: 'Montenegro' },
+  { city: 'Naples', emoji: '🌋', country: 'Italy' },
   { city: 'Helsinki', emoji: '❄️', country: 'Finland' },
-  { city: 'Athens', emoji: '🏛️', country: 'Greece' },
-  { city: 'Rome', emoji: '🍕', country: 'Italy' },
-  { city: 'Florence', emoji: '🎭', country: 'Italy' },
-  { city: 'Santorini', emoji: '🏖️', country: 'Greece' },
-  { city: 'Milan', emoji: '👗', country: 'Italy' },
-  // Other great cities
-  { city: 'Tokyo', emoji: '🗼', country: 'Japan' },
-  { city: 'Barcelona', emoji: '🎨', country: 'Spain' },
-  { city: 'Paris', emoji: '🥐', country: 'France' },
-  { city: 'Sydney', emoji: '🦘', country: 'Australia' },
-  { city: 'London', emoji: '☂️', country: 'UK' },
-  { city: 'Amsterdam', emoji: '🚲', country: 'Netherlands' },
-  { city: 'Lisbon', emoji: '🛵', country: 'Portugal' },
-  { city: 'Dubai', emoji: '🏙️', country: 'UAE' },
-  { city: 'Singapore', emoji: '🦁', country: 'Singapore' },
-  { city: 'Berlin', emoji: '🎵', country: 'Germany' },
-  { city: 'Seoul', emoji: '🎎', country: 'South Korea' },
-  { city: 'Istanbul', emoji: '🕌', country: 'Turkey' },
-  { city: 'Bangkok', emoji: '🐘', country: 'Thailand' },
-  { city: 'Toronto', emoji: '🍁', country: 'Canada' },
+  { city: 'Split', emoji: '🏖️', country: 'Croatia' },
+  { city: 'Bled', emoji: '🏞️', country: 'Slovenia' },
+  { city: 'Tbilisi', emoji: '🍷', country: 'Georgia' },
+  { city: 'Nha Trang', emoji: '🌴', country: 'Vietnam' },
+  { city: 'Porto', emoji: '🛵', country: 'Portugal' },
+  { city: 'Antalya', emoji: '🐚', country: 'Turkey' },
+  { city: 'Da Lat', emoji: '🌲', country: 'Vietnam' },
+  { city: 'Palermo', emoji: '🍋', country: 'Italy' },
+  { city: 'Thessaloniki', emoji: '🏛️', country: 'Greece' },
+  { city: 'Ohrid', emoji: '🦢', country: 'North Macedonia' },
+  { city: 'Tirana', emoji: '🏔️', country: 'Albania' },
+  { city: 'Valparaiso', emoji: '🎨', country: 'Chile' },
+  { city: 'Bergen', emoji: '🗻', country: 'Norway' },
+  { city: 'Ljubljana', emoji: '🐉', country: 'Slovenia' },
+  { city: 'Hoi An', emoji: '🏮', country: 'Vietnam' },
 ]
 
 export default function CitySearch() {

@@ -21,11 +21,11 @@ export default function Navigation() {
             <Link href="/" className="flex items-center gap-2.5">
               <img
                 src="/images/lan-avatar.png"
-                alt="Lan"
+                alt="Bao"
                 className="h-11 w-11 object-contain"
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
               />
-              <span className="font-display text-xl" style={{ color: '#C8281A' }}>Lan</span>
+              <span className="font-display text-xl" style={{ color: '#C8281A' }}>Bao</span>
               <span className="font-display text-xl" style={{ color: '#8B4513' }}>Scout</span>
             </Link>
 
@@ -55,11 +55,11 @@ export default function Navigation() {
           <Link href="/" className="flex items-center gap-2">
             <img
               src="/images/lan-avatar.png"
-              alt="Lan"
+              alt="Bao"
               className="h-9 w-9 object-contain"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
-            <span className="font-display text-xl" style={{ color: '#C8281A' }}>Lan</span>
+            <span className="font-display text-xl" style={{ color: '#C8281A' }}>Bao</span>
             <span className="font-display text-xl" style={{ color: '#8B4513' }}>Scout</span>
           </Link>
         </div>

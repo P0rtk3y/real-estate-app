@@ -16,7 +16,7 @@ export default function FoodWidget({ restaurants }: { restaurants: Restaurant[] 
     <div className="bg-white rounded-2xl border border-amber-100 shadow-sm overflow-hidden">
       <div className="p-4 border-b border-amber-50 flex items-center gap-2">
         <span className="text-xl">🥖</span>
-        <h3 className="font-bold text-gray-900">Lan&apos;s Food Hotspots</h3>
+        <h3 className="font-bold text-gray-900">Bao&apos;s Food Hotspots</h3>
         <span className="ml-auto text-xs text-gray-400">via Yelp</span>
       </div>
 
