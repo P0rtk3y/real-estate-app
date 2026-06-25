@@ -1,6 +1,6 @@
 export interface Listing {
   id: string
-  source: 'Realtor.com' | 'Demo'
+  source: 'Realtor.com' | 'Idealista' | 'Demo'
   sourceUrl: string
   address: string | undefined
   city: string
