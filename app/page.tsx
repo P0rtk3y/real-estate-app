@@ -1,5 +1,7 @@
 import CitySearch, { PopularCities } from '@/components/CitySearch'
 import LanCharacter from '@/components/LanCharacter'
+import CityCarousel from '@/components/CityCarousel'
+import VeggieHouse from '@/components/VeggieHouse'
 
 export default function Home() {
   return (
@@ -48,11 +50,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── Popular cities ───────────────────────────────────── */}
-      <div className="px-4 py-8 max-w-5xl mx-auto flex flex-col items-center">
+      {/* ── Hidden Gems Carousel ─────────────────────────────── */}
+      <div className="px-4 py-8 max-w-5xl mx-auto">
         <h2 className="text-base font-black text-gray-900 mb-1 text-center">Bao&apos;s Hidden Gems</h2>
-        <p className="text-gray-500 text-xs text-center mb-3">Affordable, less-touristy spots with water &amp; mountain views</p>
-        <PopularCities />
+        <p className="text-gray-500 text-xs text-center mb-4">Affordable, less-touristy spots with water &amp; mountain views</p>
+        <CityCarousel />
       </div>
 
       {/* ── What Bao does ────────────────────────────────────── */}
@@ -86,12 +88,20 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── CTA ──────────────────────────────────────────────── */}
-      <div className="py-12 px-4 text-center hidden sm:block" style={{ background: 'linear-gradient(135deg, #C8281A 0%, #9B3012 50%, #3D7A4A 100%)' }}>
-        <div className="max-w-xl mx-auto">
-          <h2 className="text-2xl font-black text-white mb-3">Ready to Scout?</h2>
-          <p className="text-white/75 mb-5 text-sm">Pick a city and Bao will do the rest.</p>
-          <CitySearch />
+      {/* ── Bottom Banner: Veggie House + City Chips ─────────── */}
+      <div className="py-10 px-4" style={{ background: 'linear-gradient(150deg, #C8281A 0%, #9B3012 45%, #5C1F0A 100%)' }}>
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center gap-8">
+          {/* Veggie House illustration */}
+          <div className="flex-shrink-0 flex items-end justify-center">
+            <VeggieHouse />
+          </div>
+
+          {/* City chips */}
+          <div className="flex-1 text-center sm:text-left">
+            <h2 className="text-xl sm:text-2xl font-black text-white mb-1">Explore Bao&apos;s Picks</h2>
+            <p className="text-white/70 text-sm mb-5">Affordable hidden gems — water views, mountains, and local soul</p>
+            <PopularCities />
+          </div>
         </div>
       </div>
     </div>
