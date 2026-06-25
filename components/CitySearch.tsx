@@ -58,20 +58,23 @@ export default function CitySearch() {
     <div className="w-full max-w-2xl relative">
       <form onSubmit={handleSubmit}>
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
           <input
             ref={inputRef}
             type="text"
+            inputMode="search"
             value={query}
             onChange={e => setQuery(e.target.value)}
             onFocus={() => setFocused(true)}
             onBlur={() => setTimeout(() => setFocused(false), 150)}
             placeholder="Search any city in the world..."
-            className="w-full pl-12 pr-4 py-4 text-lg rounded-2xl border-2 border-gray-200 focus:border-teal-500 focus:outline-none shadow-lg bg-white transition-colors"
+            className="w-full pl-12 pr-28 py-4 text-base sm:text-lg rounded-2xl border-2 border-transparent focus:outline-none shadow-lg bg-white transition-all"
+            style={{ borderColor: focused ? '#C8281A' : 'transparent' }}
           />
           <button
             type="submit"
-            className="absolute right-3 top-1/2 -translate-y-1/2 bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 rounded-xl font-medium transition-colors"
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-white px-4 py-2.5 rounded-xl font-semibold text-sm transition-opacity active:opacity-80"
+            style={{ background: 'linear-gradient(135deg, #C8281A, #9B3012)' }}
           >
             Scout it
           </button>
@@ -79,17 +82,17 @@ export default function CitySearch() {
       </form>
 
       {focused && suggestions.length > 0 && (
-        <div className="absolute top-full mt-2 w-full bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
+        <div className="absolute top-full mt-2 w-full bg-white rounded-2xl shadow-xl border border-amber-100 overflow-hidden z-50">
           {suggestions.map(({ city, emoji, country }) => (
             <button
               key={city}
               onMouseDown={() => navigate(city)}
-              className="w-full text-left px-4 py-3 hover:bg-teal-50 flex items-center gap-3 transition-colors"
+              className="w-full text-left px-4 py-3.5 hover:bg-amber-50 flex items-center gap-3 transition-colors active:bg-amber-100"
             >
               <span className="text-xl">{emoji}</span>
               <div>
-                <div className="font-medium text-gray-900">{city}</div>
-                <div className="text-sm text-gray-500">{country}</div>
+                <div className="font-semibold text-gray-900 text-sm">{city}</div>
+                <div className="text-xs text-gray-500">{country}</div>
               </div>
             </button>
           ))}
@@ -112,7 +115,7 @@ export function PopularCities() {
         <button
           key={city}
           onClick={() => navigate(city)}
-          className="flex items-center gap-1.5 px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-teal-400 hover:bg-teal-50 hover:text-teal-700 transition-all shadow-sm text-sm font-medium text-gray-700 group"
+          className="flex items-center gap-1.5 px-4 py-2.5 bg-white rounded-full border border-amber-100 hover:border-amber-400 hover:bg-amber-50 transition-all shadow-sm text-sm font-semibold text-gray-700 group active:scale-95"
         >
           <span className="group-hover:scale-110 transition-transform">{emoji}</span>
           {city}

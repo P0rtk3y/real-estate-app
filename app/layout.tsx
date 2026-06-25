@@ -77,11 +77,12 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col" style={{ background: '#FDF7EE' }}>
         <Navigation />
-        <main className="flex-1">{children}</main>
-        <footer className="text-center py-6 text-xs text-gray-400 border-t mt-8" style={{ borderColor: '#F5E6D3', background: '#FFF9F0' }}>
+        {/* pb-20 on mobile reserves space for fixed bottom tab bar */}
+        <main className="flex-1 pb-20 sm:pb-0">{children}</main>
+        <footer className="hidden sm:block text-center py-6 text-xs text-gray-400 border-t mt-8" style={{ borderColor: '#F5E6D3', background: '#FFF9F0' }}>
           <p>🥖 LanScout is a search tool only — always verify listings with a licensed real estate agent!</p>
           <p className="mt-1">Listings from Realtor.com · Weather from OpenWeatherMap · Events from Ticketmaster · Dining from Yelp · Photos from Unsplash</p>
-          <p className="mt-1" style={{ color: '#C8281A' }}>&quot;Cảm ơn bạn!&quot; (That&apos;s &quot;thank you!&quot; — Lan&apos;s sign-off joke 😄) 🥖</p>
+          <p className="mt-1" style={{ color: '#C8281A' }}>Thanks for using LanScout! 🥖</p>
         </footer>
         <PWAInstallPrompt />
         <ServiceWorkerRegistrar />
