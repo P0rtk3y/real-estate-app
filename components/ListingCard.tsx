@@ -46,7 +46,7 @@ export default function ListingCard({ listing }: Props) {
   }
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all group">
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-amber-100 hover:shadow-lg transition-all group">
       {/* Photo */}
       <div className="relative h-52 overflow-hidden bg-gray-100">
         <img
@@ -107,19 +107,19 @@ export default function ListingCard({ listing }: Props) {
         <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
           {listing.beds > 0 && (
             <div className="flex items-center gap-1">
-              <Bed className="w-4 h-4 text-teal-500" />
+              <Bed className="w-4 h-4 text-amber-600" />
               <span>{listing.beds} {listing.beds === 1 ? 'bed' : 'beds'}</span>
             </div>
           )}
           {listing.baths > 0 && (
             <div className="flex items-center gap-1">
-              <Bath className="w-4 h-4 text-teal-500" />
+              <Bath className="w-4 h-4 text-amber-600" />
               <span>{listing.baths} {listing.baths === 1 ? 'bath' : 'baths'}</span>
             </div>
           )}
           {listing.sqft > 0 && (
             <div className="flex items-center gap-1">
-              <Maximize2 className="w-4 h-4 text-teal-500" />
+              <Maximize2 className="w-4 h-4 text-amber-600" />
               <span>{listing.sqft.toLocaleString()} sqft</span>
             </div>
           )}
@@ -151,7 +151,10 @@ export default function ListingCard({ listing }: Props) {
           href={listing.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-medium transition-colors"
+          className="flex items-center justify-center gap-2 w-full py-2 text-white rounded-xl text-sm font-semibold transition-colors"
+          style={{ background: 'linear-gradient(135deg, #C8281A, #9B3012)' }}
+          onMouseEnter={e => (e.currentTarget.style.background = 'linear-gradient(135deg, #9B3012, #7A2510)')}
+          onMouseLeave={e => (e.currentTarget.style.background = 'linear-gradient(135deg, #C8281A, #9B3012)')}
         >
           View on {listing.source}
           <ExternalLink className="w-3.5 h-3.5" />

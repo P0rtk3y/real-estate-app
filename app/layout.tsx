@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   other: {
     "mobile-web-app-capable": "yes",
-    "msapplication-TileColor": "#7209B7",
+    "msapplication-TileColor": "#C8281A",
     "msapplication-TileImage": "/icons/icon-144.png",
     "msapplication-tap-highlight": "no",
   },
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#B5179E" },
-    { media: "(prefers-color-scheme: dark)", color: "#7209B7" },
+    { media: "(prefers-color-scheme: light)", color: "#C8281A" },
+    { media: "(prefers-color-scheme: dark)", color: "#5C1F0A" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -72,16 +72,16 @@ export default function RootLayout({
         {/* Manifest */}
         <link rel="manifest" href="/manifest.json" />
         {/* Windows */}
-        <meta name="msapplication-TileColor" content="#7209B7" />
+        <meta name="msapplication-TileColor" content="#C8281A" />
         <meta name="msapplication-TileImage" content="/icons/icon-144.png" />
       </head>
-      <body className="min-h-full flex flex-col bg-gray-50">
+      <body className="min-h-full flex flex-col" style={{ background: '#FDF7EE' }}>
         <Navigation />
         <main className="flex-1">{children}</main>
-        <footer className="text-center py-6 text-xs text-gray-400 border-t border-gray-100 bg-white mt-8">
-          <p>🌸 LanScout là công cụ tìm kiếm thôi — always verify listings with a licensed real estate agent!</p>
+        <footer className="text-center py-6 text-xs text-gray-400 border-t mt-8" style={{ borderColor: '#F5E6D3', background: '#FFF9F0' }}>
+          <p>🥖 LanScout is a search tool only — always verify listings with a licensed real estate agent!</p>
           <p className="mt-1">Listings from Realtor.com · Weather from OpenWeatherMap · Events from Ticketmaster · Dining from Yelp · Photos from Unsplash</p>
-          <p className="mt-1 text-rose-300">&quot;Lan xin cảm ơn bạn đã dùng LanScout!&quot; (Lan thanks you for using LanScout!) 🥖</p>
+          <p className="mt-1" style={{ color: '#C8281A' }}>&quot;Cảm ơn bạn!&quot; (That&apos;s &quot;thank you!&quot; — Lan&apos;s sign-off joke 😄) 🥖</p>
         </footer>
         <PWAInstallPrompt />
         <ServiceWorkerRegistrar />
@@ -129,7 +129,7 @@ function PWAInstallPrompt() {
   document.addEventListener('DOMContentLoaded', function() {
     var div = document.createElement('div');
     div.id = 'lan-install-banner';
-    div.style.cssText = 'display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:9999;background:linear-gradient(135deg,#B5179E,#7209B7);color:white;border-radius:20px;padding:12px 16px;box-shadow:0 8px 32px rgba(114,9,183,0.4);align-items:center;gap:12px;max-width:360px;width:calc(100% - 32px);font-family:system-ui,sans-serif;';
+    div.style.cssText = 'display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:9999;background:linear-gradient(135deg,#C8281A,#5C1F0A);color:white;border-radius:20px;padding:12px 16px;box-shadow:0 8px 32px rgba(200,40,26,0.4);align-items:center;gap:12px;max-width:360px;width:calc(100% - 32px);font-family:system-ui,sans-serif;';
     div.innerHTML = '<span style="font-size:24px">🌸</span><div style="flex:1"><div style="font-weight:700;font-size:14px">Install LanScout</div><div style="font-size:12px;opacity:0.85">Add Lan to your home screen!</div></div><button onclick="window._lanInstall()" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:white;padding:6px 14px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Install</button><button onclick="window._lanDismissInstall()" style="background:none;border:none;color:rgba(255,255,255,0.6);font-size:18px;cursor:pointer;padding:0 4px;line-height:1">&times;</button>';
     document.body.appendChild(div);
   });

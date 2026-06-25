@@ -16,8 +16,8 @@ function Toggle({ label, emoji, value, onChange }: ToggleProps) {
       onClick={() => onChange(!value)}
       className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm border transition-all ${
         value
-          ? 'bg-teal-600 text-white border-teal-600 font-medium'
-          : 'bg-white text-gray-700 border-gray-200 hover:border-teal-300 hover:bg-teal-50'
+          ? 'bg-red-700 text-white border-red-700 font-medium'
+          : 'bg-white text-gray-700 border-gray-200 hover:border-amber-300 hover:bg-amber-50'
       }`}
     >
       <span>{emoji}</span>
@@ -53,7 +53,7 @@ export default function PreferencesSidebar() {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sticky top-20">
       <div className="flex items-center gap-2 mb-4">
-        <SlidersHorizontal className="w-4 h-4 text-teal-600" />
+        <SlidersHorizontal className="w-4 h-4 text-red-700" />
         <h3 className="font-semibold text-gray-900 text-sm">Filter Listings</h3>
       </div>
 
@@ -87,8 +87,8 @@ export default function PreferencesSidebar() {
               onClick={() => setPref('listingType', t)}
               className={`flex-1 py-1.5 text-xs rounded-lg border transition-all capitalize ${
                 prefs.listingType === t
-                  ? 'bg-teal-600 text-white border-teal-600 font-medium'
-                  : 'border-gray-200 text-gray-600 hover:border-teal-300'
+                  ? 'bg-red-700 text-white border-red-700 font-medium'
+                  : 'border-gray-200 text-gray-600 hover:border-amber-300'
               }`}
             >
               {t === 'both' ? 'All' : t}
@@ -103,7 +103,7 @@ export default function PreferencesSidebar() {
         <select
           value={prefs.maxPrice || ''}
           onChange={e => setPref('maxPrice', e.target.value ? Number(e.target.value) : undefined)}
-          className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 text-gray-700 focus:outline-none focus:border-teal-400"
+          className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 text-gray-700 focus:outline-none focus:border-amber-400"
         >
           <option value="">No max</option>
           <option value="500000">$500K</option>

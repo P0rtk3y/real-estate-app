@@ -55,7 +55,7 @@ export default async function ScoutPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* City header */}
-      <div className="text-white py-10 px-4" style={{ background: 'linear-gradient(135deg, #B5179E 0%, #7209B7 40%, #3A0CA3 100%)' }}>
+      <div className="text-white py-10 px-4" style={{ background: 'linear-gradient(135deg, #C8281A 0%, #9B3012 40%, #5C1F0A 100%)' }}>
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
@@ -132,8 +132,8 @@ export default async function ScoutPage({ params }: Props) {
             </div>
 
             {/* Source disclaimer */}
-            <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 text-sm text-amber-800">
-              <strong>Important:</strong> All listings link directly to Realtor.com. RealScout is a search assistant only
+            <div className="rounded-xl p-4 text-sm" style={{ background: '#FFF5ED', border: '1px solid #FDBA74', color: '#7C2D12' }}>
+              <strong>Important:</strong> All listings link directly to Realtor.com. LanScout is a search assistant only
               — always verify listing details, pricing, and availability with a licensed real estate agent before making
               any property decisions.
             </div>

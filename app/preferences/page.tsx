@@ -39,7 +39,7 @@ function ToggleRow({ label, description, emoji, value, onChange }: ToggleRowProp
       <button
         onClick={() => onChange(!value)}
         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors flex-shrink-0 ${
-          value ? 'bg-teal-600' : 'bg-gray-200'
+          value ? 'bg-red-700' : 'bg-gray-200'
         }`}
       >
         <span
@@ -89,7 +89,7 @@ export default function PreferencesPage() {
             className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-xl transition-all ${
               saved
                 ? 'bg-emerald-500 text-white'
-                : 'bg-teal-600 hover:bg-teal-700 text-white'
+                : 'bg-red-700 hover:bg-red-800 text-white'
             }`}
           >
             <Save className="w-4 h-4" />
@@ -151,7 +151,7 @@ export default function PreferencesPage() {
             <select
               value={prefs.minPrice || ''}
               onChange={e => setPref('minPrice', e.target.value ? Number(e.target.value) : undefined)}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-teal-400"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-amber-400"
             >
               <option value="">No minimum</option>
               <option value="100000">$100K</option>
@@ -170,7 +170,7 @@ export default function PreferencesPage() {
             <select
               value={prefs.maxPrice || ''}
               onChange={e => setPref('maxPrice', e.target.value ? Number(e.target.value) : undefined)}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-teal-400"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-amber-400"
             >
               <option value="">No maximum</option>
               <option value="500000">$500K</option>
@@ -187,7 +187,7 @@ export default function PreferencesPage() {
             <select
               value={prefs.minSqft || ''}
               onChange={e => setPref('minSqft', e.target.value ? Number(e.target.value) : undefined)}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-teal-400"
+              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-amber-400"
             >
               <option value="">No minimum</option>
               <option value="400">400 sqft</option>
@@ -210,8 +210,8 @@ export default function PreferencesPage() {
                   onClick={() => setPref('listingType', t)}
                   className={`flex-1 py-2.5 text-sm rounded-xl border capitalize transition-all ${
                     prefs.listingType === t
-                      ? 'bg-teal-600 text-white border-teal-600 font-medium'
-                      : 'border-gray-200 text-gray-600 hover:border-teal-300 hover:bg-teal-50'
+                      ? 'bg-red-700 text-white border-red-700 font-medium'
+                      : 'border-gray-200 text-gray-600 hover:border-amber-300 hover:bg-amber-50'
                   }`}
                 >
                   {t === 'both' ? 'All' : t === 'buy' ? 'Buy' : 'Rent'}
@@ -238,8 +238,8 @@ export default function PreferencesPage() {
                   }}
                   className={`px-4 py-2 rounded-xl text-sm border capitalize transition-all ${
                     selected
-                      ? 'bg-teal-600 text-white border-teal-600 font-medium'
-                      : 'border-gray-200 text-gray-600 hover:border-teal-300 hover:bg-teal-50'
+                      ? 'bg-red-700 text-white border-red-700 font-medium'
+                      : 'border-gray-200 text-gray-600 hover:border-amber-300 hover:bg-amber-50'
                   }`}
                 >
                   {type}
@@ -264,7 +264,7 @@ export default function PreferencesPage() {
               value={prefs.minFloor || ''}
               onChange={e => setPref('minFloor', e.target.value ? Number(e.target.value) : undefined)}
               placeholder="e.g. 10"
-              className="w-24 text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:border-teal-400"
+              className="w-24 text-sm border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none focus:border-amber-400"
             />
           </div>
         )}
@@ -303,7 +303,7 @@ export default function PreferencesPage() {
           className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
             saved
               ? 'bg-emerald-500 text-white'
-              : 'bg-teal-600 hover:bg-teal-700 text-white'
+              : 'bg-red-700 hover:bg-red-800 text-white'
           }`}
         >
           <Save className="w-4 h-4" />

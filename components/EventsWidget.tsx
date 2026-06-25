@@ -25,15 +25,15 @@ function formatDate(dateStr: string) {
 
 export default function EventsWidget({ events }: { events: Event[] }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-      <div className="p-4 border-b border-gray-50 flex items-center gap-2">
-        <Calendar className="w-5 h-5 text-teal-600" />
-        <h3 className="font-semibold text-gray-900">Upcoming Events</h3>
+    <div className="bg-white rounded-2xl border border-amber-100 shadow-sm overflow-hidden">
+      <div className="p-4 border-b border-amber-50 flex items-center gap-2">
+        <Calendar className="w-5 h-5" style={{ color: '#C8281A' }} />
+        <h3 className="font-bold text-gray-900">Upcoming Events</h3>
       </div>
 
-      <div className="divide-y divide-gray-50">
+      <div className="divide-y divide-amber-50">
         {events.map(event => (
-          <div key={event.id} className="flex items-start gap-3 p-4 hover:bg-gray-50/50 transition-colors group">
+          <div key={event.id} className="flex items-start gap-3 p-4 hover:bg-amber-50/30 transition-colors group">
             {event.imageUrl ? (
               <img
                 src={event.imageUrl}
@@ -42,19 +42,20 @@ export default function EventsWidget({ events }: { events: Event[] }) {
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
               />
             ) : (
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-teal-100 to-blue-100 flex items-center justify-center flex-shrink-0">
-                <Calendar className="w-6 h-6 text-teal-600" />
+              <div className="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #FFF5ED, #FFEDD5)' }}>
+                <Calendar className="w-6 h-6 text-amber-600" />
               </div>
             )}
 
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2">
-                <div className="font-medium text-gray-900 text-sm leading-tight line-clamp-2">{event.name}</div>
+                <div className="font-semibold text-gray-900 text-sm leading-tight line-clamp-2">{event.name}</div>
                 <a
                   href={event.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
+                  className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
+                  style={{ color: '#C8281A' }}
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>

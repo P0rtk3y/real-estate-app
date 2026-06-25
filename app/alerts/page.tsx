@@ -80,7 +80,7 @@ export default function AlertsPage() {
         </div>
         <button
           onClick={() => setShowAddForm(!showAddForm)}
-          className="flex items-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-medium transition-colors"
+          className="flex items-center gap-2 px-4 py-2.5 bg-red-700 hover:bg-red-800 text-white rounded-xl text-sm font-medium transition-colors"
         >
           <Plus className="w-4 h-4" />
           Add City
@@ -89,7 +89,7 @@ export default function AlertsPage() {
 
       {/* Add city form */}
       {showAddForm && (
-        <div className="bg-white rounded-2xl border border-teal-200 p-5 mb-6 shadow-sm">
+        <div className="bg-white rounded-2xl border border-amber-200 p-5 mb-6 shadow-sm">
           <h3 className="font-semibold text-gray-900 mb-3">Add a New City Alert</h3>
           <div className="flex gap-3">
             <input
@@ -98,13 +98,13 @@ export default function AlertsPage() {
               onChange={e => setNewCity(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && newCity.trim() && addAlert(newCity.trim())}
               placeholder="e.g. Tokyo, Barcelona, Miami..."
-              className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-teal-400"
+              className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-400"
               autoFocus
             />
             <button
               onClick={() => newCity.trim() && addAlert(newCity.trim())}
               disabled={!newCity.trim()}
-              className="px-4 py-2.5 bg-teal-600 hover:bg-teal-700 disabled:bg-gray-100 disabled:text-gray-400 text-white rounded-xl text-sm font-medium transition-colors"
+              className="px-4 py-2.5 bg-red-700 hover:bg-red-800 disabled:bg-gray-100 disabled:text-gray-400 text-white rounded-xl text-sm font-medium transition-colors"
             >
               Add
             </button>
@@ -126,14 +126,14 @@ export default function AlertsPage() {
       {!loading && alerts.length === 0 && (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">🌸</div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Chưa có thành phố nào!</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">No cities yet!</h2>
           <p className="text-gray-500 mb-6 max-w-sm mx-auto">
             &quot;Tell Lan which cities to watch and she will check in on your schedule — like a very enthusiastic cô ấy who really wants you to find a beautiful home!&quot;
           </p>
           <div className="flex items-center justify-center gap-4">
             <button
               onClick={() => setShowAddForm(true)}
-              className="flex items-center gap-2 px-5 py-2.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-sm font-medium transition-colors"
+              className="flex items-center gap-2 px-5 py-2.5 bg-red-700 hover:bg-red-800 text-white rounded-xl text-sm font-medium transition-colors"
             >
               <Bell className="w-4 h-4" />
               Add your first city
@@ -185,9 +185,9 @@ export default function AlertsPage() {
 
       {/* How it works */}
       {!loading && alerts.length > 0 && (
-        <div className="mt-10 bg-teal-50 rounded-2xl p-5 border border-teal-100">
-          <h3 className="font-semibold text-teal-900 mb-2">How Alerts Work</h3>
-          <ul className="text-sm text-teal-800 space-y-1.5">
+        <div className="mt-10 bg-amber-50 rounded-2xl p-5 border border-amber-100">
+          <h3 className="font-semibold text-red-950 mb-2">How Alerts Work</h3>
+          <ul className="text-sm text-red-900 space-y-1.5">
             <li>→ Your scout checks new listings in each city on your schedule</li>
             <li>→ Listings are scored against your saved preferences</li>
             <li>→ High-match listings (80%+ Scout Score) appear in your in-app notifications</li>

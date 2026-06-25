@@ -43,8 +43,8 @@ export default function AlertScheduler({ alert, onUpdate, onDelete }: Props) {
       <div className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${alert.isActive ? 'bg-teal-100' : 'bg-gray-100'}`}>
-              <Bell className={`w-5 h-5 ${alert.isActive ? 'text-teal-600' : 'text-gray-400'}`} />
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${alert.isActive ? 'bg-red-100' : 'bg-gray-100'}`}>
+              <Bell className={`w-5 h-5 ${alert.isActive ? 'text-red-700' : 'text-gray-400'}`} />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -60,7 +60,7 @@ export default function AlertScheduler({ alert, onUpdate, onDelete }: Props) {
           <div className="flex items-center gap-2">
             <a
               href={scoutUrl}
-              className="p-2 text-teal-600 hover:bg-teal-50 rounded-lg transition-colors"
+              className="p-2 text-red-700 hover:bg-amber-50 rounded-lg transition-colors"
               title="View scout report"
             >
               <ExternalLink className="w-4 h-4" />
@@ -108,8 +108,8 @@ export default function AlertScheduler({ alert, onUpdate, onDelete }: Props) {
                   onClick={() => onUpdate(alert.id, { frequency: f })}
                   className={`flex-1 py-2 text-xs rounded-xl border capitalize transition-all ${
                     alert.frequency === f
-                      ? 'bg-teal-600 text-white border-teal-600 font-medium'
-                      : 'border-gray-200 bg-white text-gray-600 hover:border-teal-300'
+                      ? 'bg-red-700 text-white border-red-700 font-medium'
+                      : 'border-gray-200 bg-white text-gray-600 hover:border-amber-300'
                   }`}
                 >
                   {f}
@@ -129,8 +129,8 @@ export default function AlertScheduler({ alert, onUpdate, onDelete }: Props) {
                     onClick={() => onUpdate(alert.id, { dayOfWeek: i })}
                     className={`flex-1 py-1.5 text-xs rounded-lg border transition-all ${
                       alert.dayOfWeek === i
-                        ? 'bg-teal-600 text-white border-teal-600 font-medium'
-                        : 'border-gray-200 bg-white text-gray-500 hover:border-teal-300'
+                        ? 'bg-red-700 text-white border-red-700 font-medium'
+                        : 'border-gray-200 bg-white text-gray-500 hover:border-amber-300'
                     }`}
                   >
                     {day}
@@ -147,7 +147,7 @@ export default function AlertScheduler({ alert, onUpdate, onDelete }: Props) {
               <select
                 value={alert.dayOfMonth ?? 1}
                 onChange={e => onUpdate(alert.id, { dayOfMonth: Number(e.target.value) })}
-                className="w-full text-sm border border-gray-200 rounded-xl px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-teal-400"
+                className="w-full text-sm border border-gray-200 rounded-xl px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-amber-400"
               >
                 {Array.from({ length: 28 }, (_, i) => i + 1).map(d => (
                   <option key={d} value={d}>{d}{ordinal(d)}</option>
@@ -166,8 +166,8 @@ export default function AlertScheduler({ alert, onUpdate, onDelete }: Props) {
                   onClick={() => onUpdate(alert.id, { timeOfDay: t.value as Alert['timeOfDay'] })}
                   className={`flex-1 py-2 text-xs rounded-xl border transition-all ${
                     alert.timeOfDay === t.value
-                      ? 'bg-teal-600 text-white border-teal-600 font-medium'
-                      : 'border-gray-200 bg-white text-gray-600 hover:border-teal-300'
+                      ? 'bg-red-700 text-white border-red-700 font-medium'
+                      : 'border-gray-200 bg-white text-gray-600 hover:border-amber-300'
                   }`}
                 >
                   {t.label}
@@ -186,8 +186,8 @@ export default function AlertScheduler({ alert, onUpdate, onDelete }: Props) {
                   onClick={() => onUpdate(alert.id, { notificationMethod: m })}
                   className={`flex-1 py-2 text-xs rounded-xl border capitalize transition-all ${
                     alert.notificationMethod === m
-                      ? 'bg-teal-600 text-white border-teal-600 font-medium'
-                      : 'border-gray-200 bg-white text-gray-600 hover:border-teal-300'
+                      ? 'bg-red-700 text-white border-red-700 font-medium'
+                      : 'border-gray-200 bg-white text-gray-600 hover:border-amber-300'
                   }`}
                 >
                   {m === 'inapp' ? 'In-App' : m.charAt(0).toUpperCase() + m.slice(1)}

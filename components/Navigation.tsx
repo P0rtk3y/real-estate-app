@@ -13,14 +13,13 @@ export default function Navigation() {
   ]
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-amber-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-            <span className="text-2xl">🌸</span>
-            <span className="text-rose-600">Lan</span>
-            <span className="text-teal-600">Scout</span>
-            <span className="text-xs font-normal text-gray-400 hidden sm:inline ml-1">chị ấy tìm nhà cho bạn ✨</span>
+          <Link href="/" className="flex items-center gap-2 text-xl">
+            <span className="text-2xl">🥖</span>
+            <span className="font-display" style={{ color: '#C8281A' }}>Lan</span>
+            <span className="font-display" style={{ color: '#8B4513' }}>Scout</span>
           </Link>
 
           <div className="flex items-center gap-1">
@@ -28,10 +27,10 @@ export default function Navigation() {
               <Link
                 key={href}
                 href={href}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
                   pathname === href
-                    ? 'bg-rose-50 text-rose-700'
-                    : 'text-gray-600 hover:text-rose-600 hover:bg-gray-50'
+                    ? 'bg-amber-50 text-red-700'
+                    : 'text-gray-600 hover:text-red-700 hover:bg-amber-50'
                 }`}
               >
                 <Icon className="w-4 h-4" />

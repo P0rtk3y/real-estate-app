@@ -12,16 +12,16 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function FoodWidget({ restaurants }: { restaurants: Restaurant[] }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-      <div className="p-4 border-b border-gray-50 flex items-center gap-2">
-        <span className="text-xl">🌸</span>
-        <h3 className="font-semibold text-gray-900">Lan&apos;s Food Hotspots</h3>
+    <div className="bg-white rounded-2xl border border-amber-100 shadow-sm overflow-hidden">
+      <div className="p-4 border-b border-amber-50 flex items-center gap-2">
+        <span className="text-xl">🥖</span>
+        <h3 className="font-bold text-gray-900">Lan&apos;s Food Hotspots</h3>
         <span className="ml-auto text-xs text-gray-400">via Yelp</span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 divide-y divide-gray-50">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 divide-y divide-amber-50">
         {restaurants.map(r => (
-          <div key={r.id} className="flex items-center gap-3 p-4 hover:bg-gray-50/50 transition-colors group">
+          <div key={r.id} className="flex items-center gap-3 p-4 hover:bg-amber-50/30 transition-colors group">
             {r.imageUrl ? (
               <img
                 src={r.imageUrl}
@@ -30,19 +30,20 @@ export default function FoodWidget({ restaurants }: { restaurants: Restaurant[] 
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
               />
             ) : (
-              <div className="w-14 h-14 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg, #FFF5ED, #FFEDD5)' }}>
                 <UtensilsCrossed className="w-5 h-5 text-amber-400" />
               </div>
             )}
 
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between">
-                <div className="font-medium text-gray-900 text-sm truncate">{r.name}</div>
+                <div className="font-semibold text-gray-900 text-sm truncate">{r.name}</div>
                 <a
                   href={r.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity ml-1 flex-shrink-0"
+                  className="opacity-0 group-hover:opacity-100 transition-opacity ml-1 flex-shrink-0"
+                  style={{ color: '#C8281A' }}
                 >
                   <ExternalLink className="w-3 h-3" />
                 </a>
