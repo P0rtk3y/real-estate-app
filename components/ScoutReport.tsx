@@ -14,7 +14,7 @@ export default function ScoutReport({ city, insight }: Props) {
       <div className="p-6 text-white" style={{ background: 'linear-gradient(135deg, #B5179E 0%, #7209B7 40%, #3A0CA3 100%)' }}>
         <div className="flex items-start gap-4 mb-4">
           <div className="relative flex-shrink-0">
-            <div className="text-5xl">🧧</div>
+            <div className="text-5xl">🥖</div>
             <div className="absolute -top-1 -right-1 text-xl">🌸</div>
           </div>
           <div>

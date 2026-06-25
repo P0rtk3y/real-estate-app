@@ -67,7 +67,7 @@ export default async function ScoutPage({ params }: Props) {
                 <div>
                   <h1 className="text-3xl sm:text-4xl font-black">{cityName}</h1>
                   <p className="text-white/70 text-sm mt-0.5">
-                    🧧 Lan has scouted! · {resolvedListings.length} properties · Văn hóa + thời tiết + nhà đẹp
+                    🥖 Lan has scouted! · {resolvedListings.length} properties · Văn hóa + thời tiết + nhà đẹp
                   </p>
                 </div>
               </div>

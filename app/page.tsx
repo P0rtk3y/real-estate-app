@@ -13,7 +13,7 @@ export default function Home() {
         <div className="relative max-w-4xl mx-auto text-center">
           {/* Lan character */}
           <div className="mb-6 relative inline-block">
-            <div className="text-8xl" style={{ filter: 'drop-shadow(0 4px 20px rgba(255,200,0,0.4))' }}>🧧</div>
+            <div className="text-8xl" style={{ filter: 'drop-shadow(0 4px 20px rgba(255,200,0,0.4))' }}>🥖</div>
             <div className="absolute -top-2 -right-3 text-3xl animate-bounce" style={{ animationDuration: '1.8s' }}>🌸</div>
             <div className="absolute -bottom-1 -left-3 text-2xl animate-bounce" style={{ animationDuration: '2.2s', animationDelay: '0.4s' }}>✨</div>
           </div>
