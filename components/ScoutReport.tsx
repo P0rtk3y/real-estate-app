@@ -14,8 +14,19 @@ export default function ScoutReport({ city, insight }: Props) {
       <div className="p-6 text-white" style={{ background: 'linear-gradient(135deg, #C8281A 0%, #9B3012 40%, #5C1F0A 100%)' }}>
         <div className="flex items-start gap-4 mb-4">
           <div className="relative flex-shrink-0">
-            <div className="text-5xl">🥖</div>
-            <div className="absolute -top-1 -right-1 text-xl">🌿</div>
+            <img
+              src="/images/lan-avatar.png"
+              alt="Lan"
+              className="w-16 h-16 object-contain drop-shadow-md"
+              onError={e => {
+                const img = e.target as HTMLImageElement
+                img.style.display = 'none'
+                const fb = document.createElement('div')
+                fb.textContent = '🥖'
+                fb.className = 'text-5xl'
+                img.parentNode?.insertBefore(fb, img)
+              }}
+            />
           </div>
           <div>
             <div className="flex items-center gap-2 mb-1">

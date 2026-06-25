@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: Props) {
   const { city } = await params
   const cityName = formatCityName(city)
   return {
-    title: `${cityName} — Lan đã scouted! 🌸 LanScout`,
-    description: `Lan's quirky Vietnamese real estate report on ${cityName}: cultural insights, weather, events, food, and beautiful properties.`,
+    title: `${cityName} — Scouted by Lan 🥖 LanScout`,
+    description: `Lan's real estate report on ${cityName}: cultural insights, weather, events, food, and beautiful properties.`,
   }
 }
 
@@ -67,7 +67,7 @@ export default async function ScoutPage({ params }: Props) {
                 <div>
                   <h1 className="text-3xl sm:text-4xl font-black">{cityName}</h1>
                   <p className="text-white/70 text-sm mt-0.5">
-                    🥖 Lan has scouted! · {resolvedListings.length} properties · Văn hóa + thời tiết + nhà đẹp
+                    🥖 Lan has scouted! · {resolvedListings.length} properties · culture, weather &amp; homes
                   </p>
                 </div>
               </div>

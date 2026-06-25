@@ -1,3 +1,4 @@
+'use client'
 import { Star, ExternalLink, UtensilsCrossed } from 'lucide-react'
 import { Restaurant } from '@/lib/types'
 

@@ -1,3 +1,4 @@
+'use client'
 import { ExternalLink, Calendar } from 'lucide-react'
 import { Event } from '@/lib/types'
 

@@ -4,8 +4,8 @@ import Navigation from "@/components/Navigation";
 import ServiceWorkerRegistrar from "@/components/ServiceWorkerRegistrar";
 
 export const metadata: Metadata = {
-  title: "LanScout 🌸 — Chị ấy tìm nhà cho bạn",
-  description: "Lan is your quirky Vietnamese globe-trotting property scout — searching cities worldwide with cultural insights, local food tips, events, and weather. Được quá!",
+  title: "LanScout 🥖 — Your Global Property Scout",
+  description: "Lan is your globe-trotting property scout — searching cities worldwide with cultural insights, local food tips, events, and weather.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,

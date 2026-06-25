@@ -20,9 +20,9 @@ export default function Navigation() {
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2.5">
               <img
-                src="/images/lan.png"
+                src="/images/lan-avatar.png"
                 alt="Lan"
-                className="h-10 w-10 object-cover object-left-top rounded-xl"
+                className="h-11 w-11 object-contain"
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
               />
               <span className="font-display text-xl" style={{ color: '#C8281A' }}>Lan</span>
@@ -51,11 +51,16 @@ export default function Navigation() {
 
       {/* Mobile top bar */}
       <nav className="sm:hidden sticky top-0 z-50 bg-white border-b border-amber-100 shadow-sm" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
-        <div className="flex items-center justify-center h-12">
-          <Link href="/" className="flex items-center gap-1.5">
+        <div className="flex items-center justify-center gap-2 h-12">
+          <Link href="/" className="flex items-center gap-2">
+            <img
+              src="/images/lan-avatar.png"
+              alt="Lan"
+              className="h-9 w-9 object-contain"
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+            />
             <span className="font-display text-xl" style={{ color: '#C8281A' }}>Lan</span>
             <span className="font-display text-xl" style={{ color: '#8B4513' }}>Scout</span>
-            <span className="text-lg">🥖</span>
           </Link>
         </div>
       </nav>
