@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="60%" stop-color="#81D4FA"/>
+      <stop offset="100%" stop-color="#FFB74D"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00ACC1"/>
+      <stop offset="100%" stop-color="#00838F"/>
+    </linearGradient>
+    <linearGradient id="mtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </linearGradient>
+    <clipPath id="circle">
+      <circle cx="24" cy="24" r="24"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#circle)">
+    <!-- Sky -->
+    <rect width="48" height="48" fill="url(#sky)"/>
+    <!-- Mountains (Marble Mountains / Ba Na Hills) -->
+    <path d="M-2 34 L8 18 L14 24 L22 12 L30 22 L36 16 L50 34 Z" fill="url(#mtn)"/>
+    <!-- Sea -->
+    <rect y="33" width="48" height="16" fill="url(#sea)"/>
+    <!-- Beach strip -->
+    <rect y="31" width="48" height="4" fill="#F5C97A" opacity="0.9"/>
+    <!-- Dragon Bridge arc (simplified) -->
+    <path d="M4 34 Q24 20 44 34" fill="none" stroke="#E53935" stroke-width="1.5" opacity="0.85"/>
+    <!-- Sea shimmer -->
+    <path d="M0 37 Q12 35 24 37 Q36 39 48 37" fill="none" stroke="white" stroke-width="0.8" opacity="0.4"/>
+    <path d="M0 41 Q12 39 24 41 Q36 43 48 41" fill="none" stroke="white" stroke-width="0.6" opacity="0.3"/>
+  </g>
+</svg>

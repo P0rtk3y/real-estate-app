@@ -5,7 +5,7 @@ import { Search } from 'lucide-react'
 
 // Bao's hidden gems: affordable, less touristy, with water &/or mountain views
 const POPULAR_CITIES = [
-  { city: 'Da Nang', emoji: '🌊', country: 'Vietnam' },
+  { city: 'Da Nang', emoji: '🌊', country: 'Vietnam', photo: '/images/cities/da-nang.svg' },
   { city: 'Batumi', emoji: '⛰️', country: 'Georgia' },
   { city: 'Kotor', emoji: '⛵', country: 'Montenegro' },
   { city: 'Naples', emoji: '🌋', country: 'Italy' },
@@ -84,13 +84,15 @@ export default function CitySearch() {
 
       {focused && suggestions.length > 0 && (
         <div className="absolute top-full mt-2 w-full bg-white rounded-2xl shadow-xl border border-amber-100 overflow-hidden z-50">
-          {suggestions.map(({ city, emoji, country }) => (
+          {suggestions.map(({ city, emoji, country, photo }) => (
             <button
               key={city}
               onMouseDown={() => navigate(city)}
               className="w-full text-left px-4 py-3.5 hover:bg-amber-50 flex items-center gap-3 transition-colors active:bg-amber-100"
             >
-              <span className="text-xl">{emoji}</span>
+              {photo
+                ? <img src={photo} alt={city} className="w-8 h-8 rounded-lg object-cover flex-shrink-0" />
+                : <span className="text-xl">{emoji}</span>}
               <div>
                 <div className="font-semibold text-gray-900 text-sm">{city}</div>
                 <div className="text-xs text-gray-500">{country}</div>
@@ -112,13 +114,15 @@ export function PopularCities() {
 
   return (
     <div className="flex flex-wrap justify-center gap-2 max-w-3xl">
-      {POPULAR_CITIES.slice(0, 12).map(({ city, emoji }) => (
+      {POPULAR_CITIES.slice(0, 12).map(({ city, emoji, photo }) => (
         <button
           key={city}
           onClick={() => navigate(city)}
           className="flex items-center gap-1.5 px-4 py-2.5 bg-white rounded-full border border-amber-100 hover:border-amber-400 hover:bg-amber-50 transition-all shadow-sm text-sm font-semibold text-gray-700 group active:scale-95"
         >
-          <span className="group-hover:scale-110 transition-transform">{emoji}</span>
+          {photo
+            ? <img src={photo} alt={city} className="w-5 h-5 rounded object-cover group-hover:scale-110 transition-transform flex-shrink-0" />
+            : <span className="group-hover:scale-110 transition-transform">{emoji}</span>}
           {city}
         </button>
       ))}

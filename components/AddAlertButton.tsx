@@ -42,12 +42,12 @@ export default function AddAlertButton({ city }: { city: string }) {
       {added ? (
         <>
           <BellRing className="w-4 h-4" />
-          🥖 Bao will watch this city!
+          Bao will watch this city!
         </>
       ) : (
         <>
           <Bell className="w-4 h-4" />
-          {loading ? 'Bao is setting...' : 'Ask Bao to Watch This City 🥖'}
+          {loading ? 'Bao is setting...' : 'Ask Bao to Watch This City'}
         </>
       )}
     </button>

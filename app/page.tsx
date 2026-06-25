@@ -56,7 +56,7 @@ export default function Home() {
 
       {/* ── Popular cities ───────────────────────────────────── */}
       <div className="px-4 py-8 max-w-5xl mx-auto">
-        <h2 className="text-base font-black text-gray-900 mb-1 text-center">🥖 Bao&apos;s Hidden Gems</h2>
+        <h2 className="text-base font-black text-gray-900 mb-1 text-center">Bao&apos;s Hidden Gems</h2>
         <p className="text-gray-500 text-xs text-center mb-3">Affordable, less-touristy spots with water &amp; mountain views</p>
         <PopularCities />
       </div>
@@ -66,7 +66,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-xl font-black text-gray-900">What Bao Does For You</h2>
-            <p className="text-gray-500 text-sm mt-1">&quot;I work harder than a phở chef at 5am!&quot; — Bao 🥖</p>
+            <p className="text-gray-500 text-sm mt-1">&quot;I work harder than a phở chef at 5am!&quot; — Bao</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
@@ -95,7 +95,6 @@ export default function Home() {
       {/* ── CTA ──────────────────────────────────────────────── */}
       <div className="py-12 px-4 text-center hidden sm:block" style={{ background: 'linear-gradient(135deg, #C8281A 0%, #9B3012 50%, #3D7A4A 100%)' }}>
         <div className="max-w-xl mx-auto">
-          <div className="text-4xl mb-3">🥖</div>
           <h2 className="text-2xl font-black text-white mb-3">Ready to Scout?</h2>
           <p className="text-white/75 mb-5 text-sm">Pick a city and Bao will do the rest.</p>
           <CitySearch />

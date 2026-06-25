@@ -25,8 +25,7 @@ export default function Navigation() {
                 className="h-11 w-11 object-contain"
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
               />
-              <span className="font-display text-xl" style={{ color: '#C8281A' }}>Bao</span>
-              <span className="font-display text-xl" style={{ color: '#8B4513' }}>Scout</span>
+              <span className="font-display text-xl"><span style={{ color: '#C8281A' }}>Bao</span><span style={{ color: '#8B4513' }}>Scout</span></span>
             </Link>
 
             <div className="flex items-center gap-1">
@@ -59,8 +58,7 @@ export default function Navigation() {
               className="h-9 w-9 object-contain"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
-            <span className="font-display text-xl" style={{ color: '#C8281A' }}>Bao</span>
-            <span className="font-display text-xl" style={{ color: '#8B4513' }}>Scout</span>
+            <span className="font-display text-xl"><span style={{ color: '#C8281A' }}>Bao</span><span style={{ color: '#8B4513' }}>Scout</span></span>
           </Link>
         </div>
       </nav>

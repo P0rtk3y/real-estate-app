@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import ServiceWorkerRegistrar from "@/components/ServiceWorkerRegistrar";
 
 export const metadata: Metadata = {
-  title: "BaoScout 🥖 — Your Global Property Scout",
+  title: "BaoScout — Your Global Property Scout",
   description: "Bao is your globe-trotting property scout — searching cities worldwide with cultural insights, local food tips, events, and weather.",
   manifest: "/manifest.json",
   appleWebApp: {
@@ -80,9 +80,9 @@ export default function RootLayout({
         {/* pb-20 on mobile reserves space for fixed bottom tab bar */}
         <main className="flex-1 pb-20 sm:pb-0">{children}</main>
         <footer className="hidden sm:block text-center py-6 text-xs text-gray-400 border-t mt-8" style={{ borderColor: '#F5E6D3', background: '#FFF9F0' }}>
-          <p>🥖 BaoScout is a search tool only — always verify listings with a licensed real estate agent!</p>
+          <p>BaoScout is a search tool only — always verify listings with a licensed real estate agent!</p>
           <p className="mt-1">Listings from Realtor.com · Weather from OpenWeatherMap · Events from Ticketmaster · Dining from Yelp · Photos from Unsplash</p>
-          <p className="mt-1" style={{ color: '#C8281A' }}>Thanks for using BaoScout! 🥖</p>
+          <p className="mt-1" style={{ color: '#C8281A' }}>Thanks for using BaoScout!</p>
         </footer>
         <PWAInstallPrompt />
         <ServiceWorkerRegistrar />

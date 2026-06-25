@@ -11,7 +11,7 @@ interface Props {
 const MESSAGES = [
   "Xin chào! 👋 Where shall we scout?",
   "Pick a city — I'll find the gems! 🏡",
-  "I know all the best neighborhoods! 🥖",
+  "I know all the best neighborhoods! 🏡",
   "Let's find your dream home! ✨",
   "I've scouted 500+ cities! 🛵",
 ]
@@ -43,7 +43,7 @@ export default function LanCharacter({ className = '', fallbackSize = 'text-8xl'
           const img = e.target as HTMLImageElement
           img.style.display = 'none'
           const fb = document.createElement('div')
-          fb.textContent = '🥖'
+          fb.textContent = '🏠'
           fb.className = `${fallbackSize} text-center`
           img.parentNode?.insertBefore(fb, img.nextSibling)
         }}

@@ -22,7 +22,7 @@ export default function ScoutReport({ city, insight }: Props) {
                 const img = e.target as HTMLImageElement
                 img.style.display = 'none'
                 const fb = document.createElement('div')
-                fb.textContent = '🥖'
+                fb.textContent = '🏠'
                 fb.className = 'text-5xl'
                 img.parentNode?.insertBefore(fb, img)
               }}
@@ -44,7 +44,7 @@ export default function ScoutReport({ city, insight }: Props) {
         {/* Verdict */}
         <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4">
           <div className="text-xs font-semibold uppercase tracking-wider mb-1.5" style={{ color: '#FFD700' }}>
-            🥖 Bao&apos;s Verdict
+            Bao&apos;s Verdict
           </div>
           <p className="text-white font-medium italic leading-relaxed">&quot;{insight.verdict}&quot;</p>
         </div>
