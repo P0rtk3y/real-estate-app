@@ -224,6 +224,51 @@ export const FEATURE_LABELS: Record<ListingFeature, { label: string; emoji: stri
   waterfront: { label: 'Waterfront', emoji: '⚓' },
 }
 
+// Verified local real-estate portals per country/city
+export interface CityPortal {
+  name: string
+  url: string
+  flag: string
+  description: string
+}
+
+export const CITY_PORTALS: Record<string, CityPortal[]> = {
+  // Vietnam
+  'da nang':    [{ name: 'BatDongSan', url: 'https://batdongsan.com.vn/ban-nha-dat-da-nang', flag: '🇻🇳', description: "Vietnam's largest property marketplace" }, { name: 'Nha.vn', url: 'https://nha.vn/mua-ban/da-nang', flag: '🇻🇳', description: 'Verified listings across Vietnam' }],
+  'nha trang':  [{ name: 'BatDongSan', url: 'https://batdongsan.com.vn/ban-nha-dat-khanh-hoa', flag: '🇻🇳', description: "Vietnam's largest property marketplace" }, { name: 'Nha.vn', url: 'https://nha.vn/mua-ban/khanh-hoa', flag: '🇻🇳', description: 'Verified listings across Vietnam' }],
+  'da lat':     [{ name: 'BatDongSan', url: 'https://batdongsan.com.vn/ban-nha-dat-lam-dong', flag: '🇻🇳', description: "Vietnam's largest property marketplace" }, { name: 'Nha.vn', url: 'https://nha.vn/mua-ban/lam-dong', flag: '🇻🇳', description: 'Verified listings across Vietnam' }],
+  'hoi an':     [{ name: 'BatDongSan', url: 'https://batdongsan.com.vn/ban-nha-dat-quang-nam', flag: '🇻🇳', description: "Vietnam's largest property marketplace" }, { name: 'Nha.vn', url: 'https://nha.vn/mua-ban/quang-nam', flag: '🇻🇳', description: 'Verified listings across Vietnam' }],
+  // Georgia
+  'batumi':     [{ name: 'MyHome.ge', url: 'https://www.myhome.ge/en/s/Batumi', flag: '🇬🇪', description: "Georgia's most trusted property portal" }, { name: 'SS.ge', url: 'https://ss.ge/en/real-estate?city=batumi', flag: '🇬🇪', description: 'Major Georgian classifieds' }],
+  'tbilisi':    [{ name: 'MyHome.ge', url: 'https://www.myhome.ge/en/s/Tbilisi', flag: '🇬🇪', description: "Georgia's most trusted property portal" }, { name: 'SS.ge', url: 'https://ss.ge/en/real-estate?city=tbilisi', flag: '🇬🇪', description: 'Major Georgian classifieds' }],
+  // Montenegro
+  'kotor':      [{ name: 'Montenegro Real Estate', url: 'https://www.montenegrorealty.com/buy/', flag: '🇲🇪', description: 'Specialised Montenegro property' }, { name: 'Advertproperty', url: 'https://www.advertproperty.com/property-for-sale/montenegro/', flag: '🇲🇪', description: 'International listings in Montenegro' }],
+  // Italy
+  'naples':     [{ name: 'Immobiliare.it', url: 'https://www.immobiliare.it/vendita-case/napoli/', flag: '🇮🇹', description: "Italy's #1 property portal" }, { name: 'Idealista', url: 'https://www.idealista.it/vendita-immobili/napoli-citta/', flag: '🇮🇹', description: 'Major European property search' }],
+  'palermo':    [{ name: 'Immobiliare.it', url: 'https://www.immobiliare.it/vendita-case/palermo/', flag: '🇮🇹', description: "Italy's #1 property portal" }, { name: 'Idealista', url: 'https://www.idealista.it/vendita-immobili/palermo-citta/', flag: '🇮🇹', description: 'Major European property search' }],
+  // Finland
+  'helsinki':   [{ name: 'Oikotie', url: 'https://asunnot.oikotie.fi/myytavat-asunnot?locations=Helsinki', flag: '🇫🇮', description: "Finland's leading homes portal" }, { name: 'Etuovi', url: 'https://www.etuovi.com/myytavat-asunnot/helsinki/', flag: '🇫🇮', description: 'Finnish real estate listings' }],
+  // Croatia
+  'split':      [{ name: 'Njuskalo', url: 'https://www.njuskalo.hr/nekretnine-prodaja?grad=split', flag: '🇭🇷', description: "Croatia's largest classifieds" }, { name: 'Crozilla', url: 'https://www.crozilla.com/for-sale/split/', flag: '🇭🇷', description: 'Croatian property search' }],
+  // Slovenia
+  'bled':       [{ name: 'Nepremicnine.net', url: 'https://www.nepremicnine.net/oglasi-prodaja/gorenjska/', flag: '🇸🇮', description: "Slovenia's #1 property portal" }],
+  'ljubljana':  [{ name: 'Nepremicnine.net', url: 'https://www.nepremicnine.net/oglasi-prodaja/ljubljana/', flag: '🇸🇮', description: "Slovenia's #1 property portal" }],
+  // Portugal
+  'porto':      [{ name: 'Idealista', url: 'https://www.idealista.pt/comprar-casas/porto/', flag: '🇵🇹', description: 'Major European property portal' }, { name: 'Imovirtual', url: 'https://www.imovirtual.com/comprar/apartamento/porto/', flag: '🇵🇹', description: 'Portugal property marketplace' }],
+  // Turkey
+  'antalya':    [{ name: 'Sahibinden', url: 'https://www.sahibinden.com/satilik-daire/antalya', flag: '🇹🇷', description: "Turkey's largest classifieds" }, { name: 'Hepsiemlak', url: 'https://www.hepsiemlak.com/antalya-satilik', flag: '🇹🇷', description: 'Major Turkish property portal' }],
+  // Greece
+  'thessaloniki': [{ name: 'Spitogatos', url: 'https://www.spitogatos.gr/en/buy/apartments/thessaloniki/', flag: '🇬🇷', description: "Greece's top property portal" }, { name: 'XE.gr', url: 'https://www.xe.gr/property/results?transaction_name=buy&item_type=re_residence&geo_place_ids%5B%5D=10&price_to=&price_from=&area_from=&area_to=', flag: '🇬🇷', description: 'Greek real estate search' }],
+  // North Macedonia
+  'ohrid':      [{ name: 'Pazar3', url: 'https://www.pazar3.mk/en/real-estate/', flag: '🇲🇰', description: 'North Macedonia classifieds' }],
+  // Albania
+  'tirana':     [{ name: 'MerrJep', url: 'https://www.merrjep.al/pasuri-te-paluajtshme', flag: '🇦🇱', description: "Albania's leading classifieds" }, { name: 'Remax Albania', url: 'https://www.remax.al/buy-property/', flag: '🇦🇱', description: 'International agent network' }],
+  // Chile
+  'valparaiso': [{ name: 'Portal Inmobiliario', url: 'https://www.portalinmobiliario.com/venta/departamento/valparaiso/', flag: '🇨🇱', description: "Chile's #1 property portal" }, { name: 'Yapo', url: 'https://www.yapo.cl/valparaiso/inmuebles', flag: '🇨🇱', description: 'Major Chilean classifieds' }],
+  // Norway
+  'bergen':     [{ name: 'Finn.no', url: 'https://www.finn.no/realestate/homes/search.html?q=Bergen', flag: '🇳🇴', description: "Norway's dominant listings platform" }],
+}
+
 export const CITY_EMOJIS: Record<string, string> = {
   // Bao's hidden gems
   'da nang': '🌊',

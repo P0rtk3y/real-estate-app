@@ -5,7 +5,7 @@ import { fetchWeather } from '@/lib/api/weather'
 import { fetchEvents } from '@/lib/api/events'
 import { fetchFood } from '@/lib/api/food'
 import { fetchInsights } from '@/lib/api/insights'
-import { DEFAULT_PREFERENCES, CITY_EMOJIS } from '@/lib/types'
+import { DEFAULT_PREFERENCES, CITY_EMOJIS, CITY_PORTALS } from '@/lib/types'
 import ScoutReport from '@/components/ScoutReport'
 import ListingCard from '@/components/ListingCard'
 import WeatherWidget from '@/components/WeatherWidget'
@@ -131,11 +131,42 @@ export default async function ScoutPage({ params }: Props) {
               )}
             </div>
 
+            {/* Local portals */}
+            {(() => {
+              const portals = CITY_PORTALS[cityName.toLowerCase()]
+              if (!portals?.length) return null
+              return (
+                <div className="bg-white rounded-2xl border border-amber-100 shadow-sm p-5">
+                  <h3 className="font-bold text-gray-900 mb-1 flex items-center gap-2">
+                    <span>🏦</span> Also Search on Verified Local Portals
+                  </h3>
+                  <p className="text-xs text-gray-500 mb-4">Country-specific real estate sites trusted by locals — often have listings not found elsewhere.</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {portals.map(portal => (
+                      <a
+                        key={portal.name}
+                        href={portal.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-xl border border-amber-100 hover:border-amber-300 hover:bg-amber-50 transition-all group"
+                      >
+                        <span className="text-2xl flex-shrink-0">{portal.flag}</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="font-semibold text-sm text-gray-900 group-hover:text-red-700 transition-colors">{portal.name}</div>
+                          <div className="text-xs text-gray-500 truncate">{portal.description}</div>
+                        </div>
+                        <span className="text-gray-300 group-hover:text-red-400 transition-colors text-xs">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )
+            })()}
+
             {/* Source disclaimer */}
             <div className="rounded-xl p-4 text-sm" style={{ background: '#FFF5ED', border: '1px solid #FDBA74', color: '#7C2D12' }}>
-              <strong>Important:</strong> All listings link directly to Realtor.com. BaoScout is a search assistant only
-              — always verify listing details, pricing, and availability with a licensed real estate agent before making
-              any property decisions.
+              <strong>Important:</strong> BaoScout is a search assistant only — always verify listing details, pricing,
+              and availability with a licensed real estate agent before making any property decisions.
             </div>
           </div>
         </div>

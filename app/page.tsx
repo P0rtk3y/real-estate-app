@@ -28,12 +28,6 @@ export default function Home() {
         {/* Desktop layout */}
         <div className="hidden sm:flex items-center gap-8 max-w-5xl mx-auto px-6 py-16">
           <div className="flex-1">
-            <div className="inline-flex items-center gap-2 bg-white/15 border border-white/20 rounded-full px-4 py-1.5 text-sm font-semibold text-white/90 mb-4">
-              <span>Hi, I&apos;m</span>
-              <span className="font-display text-base" style={{ color: '#FFD700' }}>Bao</span>
-              <span>Your Personal Property Scout</span>
-            </div>
-
             <h1 className="text-5xl lg:text-6xl font-black mb-4 leading-tight">
               Find your<br />
               <span style={{ color: '#FFD700' }}>dream home</span>,<br />
@@ -55,7 +49,7 @@ export default function Home() {
       </div>
 
       {/* ── Popular cities ───────────────────────────────────── */}
-      <div className="px-4 py-8 max-w-5xl mx-auto">
+      <div className="px-4 py-8 max-w-5xl mx-auto flex flex-col items-center">
         <h2 className="text-base font-black text-gray-900 mb-1 text-center">Bao&apos;s Hidden Gems</h2>
         <p className="text-gray-500 text-xs text-center mb-3">Affordable, less-touristy spots with water &amp; mountain views</p>
         <PopularCities />

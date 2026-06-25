@@ -9,11 +9,12 @@ interface Props {
 }
 
 const MESSAGES = [
-  "Xin chào! 👋 Where shall we scout?",
-  "Pick a city — I'll find the gems! 🏡",
-  "I know all the best neighborhoods! 🏡",
-  "Let's find your dream home! ✨",
-  "I've scouted 500+ cities! 🛵",
+  "Hi, I'm Bao — your property scout!",
+  "Xin chào! Where shall we scout?",
+  "Pick a city — I'll find the gems!",
+  "I know all the best neighborhoods!",
+  "Let's find your dream home!",
+  "I've scouted 500+ cities!",
 ]
 
 export default function LanCharacter({ className = '', fallbackSize = 'text-8xl', animated = false, showChat = false }: Props) {

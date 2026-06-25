@@ -145,40 +145,61 @@ export default function PreferencesPage() {
             </div>
           </div>
 
+          {/* Currency */}
+          <div className="sm:col-span-2">
+            <label className="text-sm font-medium text-gray-700 mb-2 block">Currency</label>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { code: 'USD', symbol: '$', label: 'USD $' },
+                { code: 'EUR', symbol: '€', label: 'EUR €' },
+                { code: 'GBP', symbol: '£', label: 'GBP £' },
+                { code: 'VND', symbol: '₫', label: 'VND ₫' },
+                { code: 'GEL', symbol: '₾', label: 'GEL ₾' },
+                { code: 'TRY', symbol: '₺', label: 'TRY ₺' },
+                { code: 'NOK', symbol: 'kr', label: 'NOK kr' },
+                { code: 'CLP', symbol: 'CL$', label: 'CLP $' },
+              ].map(({ code, label }) => (
+                <button
+                  key={code}
+                  onClick={() => setPref('currency' as keyof UserPreferences, code as UserPreferences[keyof UserPreferences])}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors ${
+                    (prefs as UserPreferences & { currency?: string }).currency === code || (!((prefs as UserPreferences & { currency?: string }).currency) && code === 'USD')
+                      ? 'bg-red-700 text-white border-red-700'
+                      : 'border-gray-200 text-gray-600 hover:border-amber-400 hover:bg-amber-50'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Min Price */}
           <div>
             <label className="text-sm font-medium text-gray-700 mb-2 block">Min Price</label>
-            <select
+            <input
+              type="number"
+              min={0}
+              step={1000}
               value={prefs.minPrice || ''}
               onChange={e => setPref('minPrice', e.target.value ? Number(e.target.value) : undefined)}
+              placeholder="e.g. 150,000"
               className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-amber-400"
-            >
-              <option value="">No minimum</option>
-              <option value="100000">$100K</option>
-              <option value="250000">$250K</option>
-              <option value="500000">$500K</option>
-              <option value="750000">$750K</option>
-              <option value="1000000">$1M</option>
-              <option value="2000000">$2M</option>
-              <option value="5000000">$5M</option>
-            </select>
+            />
           </div>
 
           {/* Max Price */}
           <div>
             <label className="text-sm font-medium text-gray-700 mb-2 block">Max Price</label>
-            <select
+            <input
+              type="number"
+              min={0}
+              step={1000}
               value={prefs.maxPrice || ''}
               onChange={e => setPref('maxPrice', e.target.value ? Number(e.target.value) : undefined)}
+              placeholder="e.g. 500,000"
               className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-amber-400"
-            >
-              <option value="">No maximum</option>
-              <option value="500000">$500K</option>
-              <option value="1000000">$1M</option>
-              <option value="2000000">$2M</option>
-              <option value="5000000">$5M</option>
-              <option value="10000000">$10M</option>
-            </select>
+            />
           </div>
 
           {/* Min Sqft */}
