@@ -4,26 +4,28 @@ import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
 
 const POPULAR_CITIES = [
-  { city: 'Miami', emoji: '🌴', country: 'USA' },
+  // Focus regions: Finland, Greece & Italy
+  { city: 'Helsinki', emoji: '❄️', country: 'Finland' },
+  { city: 'Athens', emoji: '🏛️', country: 'Greece' },
+  { city: 'Rome', emoji: '🍕', country: 'Italy' },
+  { city: 'Florence', emoji: '🎭', country: 'Italy' },
+  { city: 'Santorini', emoji: '🏖️', country: 'Greece' },
+  { city: 'Milan', emoji: '👗', country: 'Italy' },
+  // Other great cities
   { city: 'Tokyo', emoji: '🗼', country: 'Japan' },
   { city: 'Barcelona', emoji: '🎨', country: 'Spain' },
   { city: 'Paris', emoji: '🥐', country: 'France' },
   { city: 'Sydney', emoji: '🦘', country: 'Australia' },
-  { city: 'New York', emoji: '🗽', country: 'USA' },
   { city: 'London', emoji: '☂️', country: 'UK' },
   { city: 'Amsterdam', emoji: '🚲', country: 'Netherlands' },
   { city: 'Lisbon', emoji: '🛵', country: 'Portugal' },
   { city: 'Dubai', emoji: '🏙️', country: 'UAE' },
   { city: 'Singapore', emoji: '🦁', country: 'Singapore' },
-  { city: 'Rome', emoji: '🍕', country: 'Italy' },
   { city: 'Berlin', emoji: '🎵', country: 'Germany' },
   { city: 'Seoul', emoji: '🎎', country: 'South Korea' },
   { city: 'Istanbul', emoji: '🕌', country: 'Turkey' },
   { city: 'Bangkok', emoji: '🐘', country: 'Thailand' },
-  { city: 'Los Angeles', emoji: '🌅', country: 'USA' },
-  { city: 'Chicago', emoji: '🌬️', country: 'USA' },
   { city: 'Toronto', emoji: '🍁', country: 'Canada' },
-  { city: 'Mexico City', emoji: '🌮', country: 'Mexico' },
 ]
 
 export default function CitySearch() {

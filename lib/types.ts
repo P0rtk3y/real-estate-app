@@ -225,10 +225,13 @@ export const FEATURE_LABELS: Record<ListingFeature, { label: string; emoji: stri
 }
 
 export const CITY_EMOJIS: Record<string, string> = {
+  helsinki: '❄️',
+  athens: '🏛️',
+  florence: '🎭',
+  santorini: '🏖️',
+  milan: '👗',
   tokyo: '🗼',
   barcelona: '🎨',
-  miami: '🌴',
-  'new york': '🗽',
   paris: '🥐',
   sydney: '🦘',
   london: '☂️',

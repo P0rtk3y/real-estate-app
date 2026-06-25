@@ -31,7 +31,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 bg-white/15 border border-white/20 rounded-full px-4 py-1.5 text-sm font-semibold text-white/90 mb-4">
               <span>Hi, I&apos;m</span>
               <span className="font-display text-base" style={{ color: '#FFD700' }}>Lan</span>
-              <span>🥖 Your Personal Property Scout</span>
+              <span>Your Personal Property Scout</span>
             </div>
 
             <h1 className="text-5xl lg:text-6xl font-black mb-4 leading-tight">
