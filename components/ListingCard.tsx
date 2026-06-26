@@ -159,6 +159,27 @@ export default function ListingCard({ listing }: Props) {
           View on {listing.source}
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
+
+        {listing.source === 'Realtor.com' && listing.address && (
+          <div className="flex gap-2 mt-2">
+            <a
+              href={`https://www.zillow.com/homes/${encodeURIComponent(`${listing.address}, ${listing.city}, ${listing.state}`)}_rb/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-xl text-xs font-semibold border border-blue-200 text-blue-700 hover:bg-blue-50 transition-colors"
+            >
+              Zillow <ExternalLink className="w-3 h-3" />
+            </a>
+            <a
+              href={`https://www.redfin.com/search#location=${encodeURIComponent(`${listing.address}, ${listing.city}, ${listing.state}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-xl text-xs font-semibold border border-red-200 text-red-700 hover:bg-red-50 transition-colors"
+            >
+              Redfin <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+        )}
       </div>
     </div>
   )
