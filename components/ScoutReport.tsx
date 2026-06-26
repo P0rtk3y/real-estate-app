@@ -127,7 +127,7 @@ export default function ScoutReport({ city, insight }: Props) {
         <div className="border-t border-amber-100 pt-4 flex items-start gap-2">
           <span className="text-lg flex-shrink-0">⚠️</span>
           <p className="text-xs text-gray-400 leading-relaxed">
-            Listings link directly to Realtor.com. BaoScout is a search assistant only — always verify details with a licensed real estate agent before making any property decisions.
+            BaoScout is a search assistant only — always verify details with a licensed real estate agent before making any property decisions.
             <span className="font-medium" style={{ color: '#C8281A' }}> Bao apologizes in advance</span> — she cannot be held responsible for you falling in love with a penthouse above your budget! 😂
           </p>
         </div>
