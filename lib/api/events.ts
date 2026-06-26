@@ -27,7 +27,7 @@ export async function fetchEvents(city: string): Promise<Event[]> {
     if (results.length > 0) return results
   }
 
-  return getDemoEvents(city)
+  return []
 }
 
 // ── Ticketmaster ─────────────────────────────────────────────────────────────

@@ -97,11 +97,11 @@ export default async function ScoutPage({ params }: Props) {
             {/* Weather + Events row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {resolvedWeather && <WeatherWidget weather={resolvedWeather} />}
-              {resolvedEvents.length > 0 && <EventsWidget events={resolvedEvents} />}
+              <EventsWidget events={resolvedEvents} city={cityName} />
             </div>
 
             {/* Food */}
-            {resolvedFood.length > 0 && <FoodWidget restaurants={resolvedFood} />}
+            <FoodWidget restaurants={resolvedFood} city={cityName} />
 
             {/* Listings */}
             <div>

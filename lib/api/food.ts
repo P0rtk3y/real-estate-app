@@ -16,7 +16,7 @@ export async function fetchFood(city: string): Promise<Restaurant[]> {
     if (results.length > 0) return results
   }
 
-  return getDemoFood(city)
+  return []
 }
 
 // ── Yelp ────────────────────────────────────────────────────────────────────
