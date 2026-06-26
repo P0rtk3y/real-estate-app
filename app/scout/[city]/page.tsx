@@ -110,7 +110,9 @@ export default async function ScoutPage({ params }: Props) {
                   Properties in {cityName}
                 </h2>
                 <p className="text-sm text-gray-500">
-                  Sorted by Scout Score · Source: Realtor.com
+                  {resolvedListings.length > 0
+                    ? `Sorted by Scout Score · via ${resolvedListings[0].source}`
+                    : 'Verified local sources only'}
                 </p>
               </div>
 
@@ -123,10 +125,10 @@ export default async function ScoutPage({ params }: Props) {
                     ))}
                 </div>
               ) : (
-                <div className="bg-white rounded-2xl border border-gray-100 p-12 text-center">
-                  <div className="text-5xl mb-4">🏠</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No listings found</h3>
-                  <p className="text-gray-500 text-sm">Try adjusting your preferences or searching a different city.</p>
+                <div className="bg-white rounded-2xl border border-amber-100 p-10 text-center">
+                  <div className="text-5xl mb-4">🏡</div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Browse verified local listings</h3>
+                  <p className="text-gray-500 text-sm max-w-sm mx-auto">Bao only shows properties from trusted local portals. Use the links below to search directly on the sites locals use.</p>
                 </div>
               )}
             </div>

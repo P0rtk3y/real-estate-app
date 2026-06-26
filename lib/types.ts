@@ -150,6 +150,9 @@ export interface UserPreferences {
   quietNeighborhood: boolean
   upAndComing: boolean
 
+  // Display
+  currency: string
+
   // Email for alerts
   email?: string
 }
@@ -202,6 +205,7 @@ export const DEFAULT_PREFERENCES: UserPreferences = {
   nearSchools: false,
   quietNeighborhood: false,
   upAndComing: false,
+  currency: 'USD',
 }
 
 export const FEATURE_LABELS: Record<ListingFeature, { label: string; emoji: string }> = {

@@ -180,6 +180,31 @@ export default function ListingCard({ listing }: Props) {
             </a>
           </div>
         )}
+
+        {listing.source === 'Idealista' && (() => {
+          const country = listing.country?.toUpperCase()
+          const companions: { label: string; href: string; color: string }[] =
+            country === 'ES' ? [
+              { label: 'Fotocasa', href: `https://www.fotocasa.es/es/comprar/viviendas/${listing.city.toLowerCase()}/todas-las-zonas/l`, color: 'border-orange-200 text-orange-700 hover:bg-orange-50' },
+              { label: 'Habitaclia', href: `https://www.habitaclia.com/comprar-en-${listing.city.toLowerCase()}.htm`, color: 'border-green-200 text-green-700 hover:bg-green-50' },
+            ] : country === 'PT' ? [
+              { label: 'Imovirtual', href: `https://www.imovirtual.com/comprar/apartamento/${listing.city.toLowerCase()}/`, color: 'border-blue-200 text-blue-700 hover:bg-blue-50' },
+              { label: 'Casa.pt', href: `https://casa.sapo.pt/comprar-apartamentos/${listing.city.toLowerCase()}/`, color: 'border-green-200 text-green-700 hover:bg-green-50' },
+            ] : country === 'IT' ? [
+              { label: 'Immobiliare', href: `https://www.immobiliare.it/vendita-case/${listing.city.toLowerCase()}/`, color: 'border-red-200 text-red-700 hover:bg-red-50' },
+              { label: 'Casa.it', href: `https://www.casa.it/vendita/residenziale/${listing.city.toLowerCase()}/`, color: 'border-blue-200 text-blue-700 hover:bg-blue-50' },
+            ] : []
+          return companions.length > 0 ? (
+            <div className="flex gap-2 mt-2">
+              {companions.map(c => (
+                <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-xl text-xs font-semibold border transition-colors ${c.color}`}>
+                  {c.label} <ExternalLink className="w-3 h-3" />
+                </a>
+              ))}
+            </div>
+          ) : null
+        })()}
       </div>
     </div>
   )

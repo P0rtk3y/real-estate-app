@@ -1,4 +1,5 @@
 import { Listing, UserPreferences } from '@/lib/types'
+import { convertPrice, formatPrice } from '@/lib/api/currency'
 
 const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY || ''
 const RAPIDAPI_HOST = process.env.RAPIDAPI_HOST || 'realtor-com4.p.rapidapi.com'
@@ -114,13 +115,18 @@ interface RealtorListing {
   flags?: { is_price_reduced?: boolean }
 }
 
-function normalizeRealtor(item: RealtorListing, cityQuery: string, prefs: UserPreferences): Listing {
+async function normalizeRealtor(item: RealtorListing, cityQuery: string, prefs: UserPreferences): Promise<Listing> {
   const features = buildFeatures(item)
   const photos: string[] = []
   if (item.primary_photo?.href) photos.push(item.primary_photo.href)
   ;(item.photos || []).slice(0, 5).forEach((p) => { if (p.href && !photos.includes(p.href)) photos.push(p.href) })
 
-  const listing: Listing = {
+  const targetCurrency = prefs.currency || 'USD'
+  const rawPrice = item.list_price || 0
+  const price = rawPrice ? await convertPrice(rawPrice, 'USD', targetCurrency) : 0
+  const priceDisplay = price ? formatPrice(price, targetCurrency) : 'Price on request'
+
+  return {
     id: item.property_id || item.listing_id || Math.random().toString(36).slice(2),
     source: 'Realtor.com',
     sourceUrl: item.permalink ? `https://www.realtor.com/realestateandhomes-detail/${item.permalink}` : 'https://www.realtor.com',
@@ -128,8 +134,8 @@ function normalizeRealtor(item: RealtorListing, cityQuery: string, prefs: UserPr
     city: item.location?.address?.city || cityQuery,
     state: item.location?.address?.state_code || '',
     country: item.location?.address?.country || '',
-    price: item.list_price || 0,
-    priceDisplay: item.list_price ? `$${item.list_price.toLocaleString()}` : 'Price on request',
+    price,
+    priceDisplay,
     listingType: 'buy',
     beds: item.description?.beds || 0,
     baths: item.description?.baths_consolidated || 0,
@@ -141,24 +147,22 @@ function normalizeRealtor(item: RealtorListing, cityQuery: string, prefs: UserPr
     yearBuilt: item.description?.year_built,
     description: item.description?.text,
   }
-  return listing
 }
 
 export async function fetchListings(city: string, prefs: UserPreferences): Promise<Listing[]> {
-  if (!RAPIDAPI_KEY) return getDemoListings(city, prefs)
+  if (!RAPIDAPI_KEY) return []
 
   const cityLower = city.toLowerCase()
 
-  // Route to the right data source based on city
   if (IDEALISTA_CITIES[cityLower]) {
     const results = await fetchIdealista(city, IDEALISTA_CITIES[cityLower], prefs)
     if (results.length > 0) return results
-  } else if (REALTOR_CITIES.has(cityLower) || !IDEALISTA_CITIES[cityLower]) {
+  } else if (REALTOR_CITIES.has(cityLower)) {
     const results = await fetchRealtor(city, prefs)
     if (results.length > 0) return results
   }
 
-  return getDemoListings(city, prefs)
+  return []
 }
 
 async function fetchRealtor(city: string, prefs: UserPreferences): Promise<Listing[]> {
@@ -177,7 +181,7 @@ async function fetchRealtor(city: string, prefs: UserPreferences): Promise<Listi
     if (!res.ok) return []
     const data = await res.json()
     const items: RealtorListing[] = data?.data?.results || data?.results || []
-    return items.slice(0, 12).map(item => normalizeRealtor(item, city, prefs))
+    return await Promise.all(items.slice(0, 12).map(item => normalizeRealtor(item, city, prefs)))
   } catch (err) {
     console.error('Realtor fetch failed:', err)
     return []
@@ -211,8 +215,7 @@ interface IdealistaProperty {
   priceByArea?: number
 }
 
-function normalizeIdealista(item: IdealistaProperty, cityName: string, country: string, prefs: UserPreferences): Listing {
-  const currencySymbol = country === 'pt' || country === 'es' || country === 'it' ? '€' : '€'
+async function normalizeIdealista(item: IdealistaProperty, cityName: string, country: string, prefs: UserPreferences): Promise<Listing> {
   const features: Listing['features'] = []
   if (item.exterior) features.push('natural_light')
   if (item.hasTerrace) features.push('balcony')
@@ -227,16 +230,20 @@ function normalizeIdealista(item: IdealistaProperty, cityName: string, country: 
   if (desc.includes('modern') || desc.includes('nuovo') || desc.includes('ristrutturato')) features.push('modern')
   if (desc.includes('storico') || desc.includes('historic') || desc.includes('antico')) features.push('historic')
 
-  const price = item.price || 0
-  const priceDisplay = price ? `${currencySymbol}${price.toLocaleString()}` : 'Price on request'
+  const targetCurrency = prefs.currency || 'USD'
+  const rawPrice = item.price || 0
+  const price = rawPrice ? await convertPrice(rawPrice, 'EUR', targetCurrency) : 0
+  const priceDisplay = price ? formatPrice(price, targetCurrency) : 'Price on request'
   const photos: string[] = []
   if (item.thumbnail) photos.push(item.thumbnail)
   ;(item.images || []).slice(0, 5).forEach(img => { if (img.url && !photos.includes(img.url)) photos.push(img.url) })
 
+  const idealistaDomain = country === 'es' ? 'idealista.com' : country === 'pt' ? 'idealista.pt' : 'idealista.it'
+
   return {
     id: item.propertyCode || Math.random().toString(36).slice(2),
     source: 'Idealista',
-    sourceUrl: item.url || `https://www.idealista.it`,
+    sourceUrl: item.url || `https://www.${idealistaDomain}`,
     address: item.address || item.district || item.neighborhood || 'Address available on Idealista',
     city: item.municipality || cityName,
     state: item.province || '',
@@ -293,7 +300,7 @@ async function fetchIdealista(city: string, country: 'it' | 'es' | 'pt', prefs: 
     if (!propRes.ok) return []
     const propData = await propRes.json()
     const items: IdealistaProperty[] = propData?.elementList || []
-    return items.slice(0, 12).map(item => normalizeIdealista(item, city, country, prefs))
+    return await Promise.all(items.slice(0, 12).map(item => normalizeIdealista(item, city, country, prefs)))
   } catch (err) {
     console.error('Idealista fetch failed:', err)
     return []

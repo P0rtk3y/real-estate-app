@@ -1,6 +1,7 @@
 'use client'
 import { usePreferences } from '@/store/usePreferences'
 import { UserPreferences } from '@/lib/types'
+import { CURRENCIES } from '@/lib/api/currency'
 import { SlidersHorizontal } from 'lucide-react'
 
 interface ToggleProps {
@@ -95,6 +96,20 @@ export default function PreferencesSidebar() {
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Currency */}
+      <div className="mb-4">
+        <label className="text-xs font-medium text-gray-600 mb-2 block">Display Currency</label>
+        <select
+          value={prefs.currency || 'USD'}
+          onChange={e => setPref('currency', e.target.value)}
+          className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 text-gray-700 focus:outline-none focus:border-amber-400"
+        >
+          {Object.entries(CURRENCIES).map(([code, { label }]) => (
+            <option key={code} value={code}>{label}</option>
+          ))}
+        </select>
       </div>
 
       {/* Price range */}
