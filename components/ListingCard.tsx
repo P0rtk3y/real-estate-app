@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Heart, ExternalLink, Bed, Bath, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Heart, ExternalLink, Bed, Bath, Maximize2, ChevronLeft, ChevronRight, Languages } from 'lucide-react'
 import { Listing, FEATURE_LABELS } from '@/lib/types'
 
 interface Props {
@@ -22,7 +22,8 @@ function ScoutScoreBadge({ score }: { score: number }) {
 export default function ListingCard({ listing }: Props) {
   const [photoIndex, setPhotoIndex] = useState(0)
   const [saved, setSaved] = useState(false)
-  const photos = listing.photos.length > 0 ? listing.photos : ['https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80']
+  const [showOriginal, setShowOriginal] = useState(false)
+  const photos = listing.photos
 
   function prev(e: React.MouseEvent) {
     e.preventDefault()
@@ -49,12 +50,20 @@ export default function ListingCard({ listing }: Props) {
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-amber-100 hover:shadow-lg transition-all group">
       {/* Photo */}
       <div className="relative h-52 overflow-hidden bg-gray-100">
-        <img
-          src={photos[photoIndex]}
-          alt={listing.address}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          onError={e => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80' }}
-        />
+        {photos.length > 0 ? (
+          <img
+            src={photos[photoIndex]}
+            alt={listing.address}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center" style={{ background: 'linear-gradient(135deg, #FFF5ED, #FFEDD5)' }}>
+            <span className="text-5xl mb-2">🏠</span>
+            <span className="text-xs text-amber-600 font-medium">No photo available</span>
+            <span className="text-xs text-gray-400 mt-0.5">View listing for photos</span>
+          </div>
+        )}
 
         {listing.scoutScore !== undefined && <ScoutScoreBadge score={listing.scoutScore} />}
 
@@ -143,8 +152,21 @@ export default function ListingCard({ listing }: Props) {
           </div>
         )}
 
-        {listing.description && (
-          <p className="text-xs text-gray-500 line-clamp-2 mb-3">{listing.description}</p>
+        {(listing.description || listing.originalDescription) && (
+          <div className="mb-3">
+            <p className="text-xs text-gray-500 line-clamp-2">
+              {showOriginal && listing.originalDescription ? listing.originalDescription : listing.description}
+            </p>
+            {listing.originalDescription && listing.description && (
+              <button
+                onClick={e => { e.preventDefault(); setShowOriginal(v => !v) }}
+                className="mt-1 flex items-center gap-1 text-xs text-amber-600 hover:text-amber-800 transition-colors"
+              >
+                <Languages className="w-3 h-3" />
+                {showOriginal ? 'English' : listing.originalLanguage === 'ka' ? '🇬🇪 ქართული' : 'Original'}
+              </button>
+            )}
+          </div>
         )}
 
         <a
@@ -177,6 +199,19 @@ export default function ListingCard({ listing }: Props) {
               className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-xl text-xs font-semibold border border-red-200 text-red-700 hover:bg-red-50 transition-colors"
             >
               Redfin <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+        )}
+
+        {listing.source === 'MyHome.ge' && (
+          <div className="flex gap-2 mt-2">
+            <a
+              href={`https://ss.ge/en/real-estate?city=${encodeURIComponent(listing.city)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-xl text-xs font-semibold border border-amber-200 text-amber-700 hover:bg-amber-50 transition-colors"
+            >
+              SS.ge <ExternalLink className="w-3 h-3" />
             </a>
           </div>
         )}

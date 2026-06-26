@@ -27,7 +27,8 @@ export async function fetchEvents(city: string): Promise<Event[]> {
     if (results.length > 0) return results
   }
 
-  return []
+  // Curated events for cities with no API coverage — links go to official event pages
+  return getDemoEvents(city)
 }
 
 // ── Ticketmaster ─────────────────────────────────────────────────────────────
@@ -149,17 +150,17 @@ function getDemoEvents(city: string): Event[] {
     batumi: [
       { id: 'e1', name: 'Black Sea Jazz Festival', date: '2026-07-12', time: '20:00:00', venue: 'Batumi Boulevard, Piazza', category: 'Music', url: 'https://www.bsjf.ge', imageUrl: 'https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=400&q=80' },
       { id: 'e2', name: 'Batumi Art-Gen Festival', date: '2026-08-08', time: '12:00:00', venue: 'Batumi Old Town Square', category: 'Arts', url: 'https://www.artgen.ge', imageUrl: 'https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=400&q=80' },
-      { id: 'e3', name: 'Georgian Wine Festival', date: '2026-10-03', time: '11:00:00', venue: 'Batumi Botanical Garden', category: 'Food & Drink', url: 'https://www.georgia.travel', imageUrl: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80' },
+      { id: 'e3', name: 'Georgian Wine Festival – Batumi', date: '2026-10-03', time: '11:00:00', venue: 'Batumi Botanical Garden', category: 'Food & Drink', url: 'https://www.wine.gov.ge', imageUrl: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80' },
     ],
     tbilisi: [
-      { id: 'e1', name: 'Tbilisi International Festival of Theatre', date: '2026-10-15', time: '19:00:00', venue: 'Rustaveli National Theatre', category: 'Arts', url: 'https://www.georgia.travel', imageUrl: 'https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=400&q=80' },
-      { id: 'e2', name: 'Tbilisoba City Festival', date: '2026-10-25', time: '10:00:00', venue: 'Old Tbilisi, Rike Park', category: 'Cultural', url: 'https://www.georgia.travel', imageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&q=80' },
-      { id: 'e3', name: 'New Wine Festival', date: '2026-05-10', time: '12:00:00', venue: 'Rike Park, Tbilisi', category: 'Food & Drink', url: 'https://www.georgia.travel', imageUrl: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80' },
+      { id: 'e1', name: 'Tbilisi International Festival of Theatre (TIFT)', date: '2026-10-15', time: '19:00:00', venue: 'Rustaveli National Theatre', category: 'Arts', url: 'https://www.titaf.ge', imageUrl: 'https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=400&q=80' },
+      { id: 'e2', name: 'Tbilisoba City Festival', date: '2026-10-25', time: '10:00:00', venue: 'Old Tbilisi, Rike Park', category: 'Cultural', url: 'https://tbilisi.gov.ge/tbilisoba', imageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&q=80' },
+      { id: 'e3', name: 'New Wine Festival', date: '2026-05-10', time: '12:00:00', venue: 'Rike Park, Tbilisi', category: 'Food & Drink', url: 'https://www.newwine.ge', imageUrl: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80' },
     ],
     kotor: [
-      { id: 'e1', name: 'Kotor Carnival', date: '2026-02-14', time: '14:00:00', venue: 'Kotor Old Town, Arms Square', category: 'Cultural', url: 'https://www.visit-montenegro.com', imageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&q=80' },
-      { id: 'e2', name: 'Kotor Music Festival', date: '2026-08-22', time: '20:00:00', venue: 'St. Tryphon Cathedral Square', category: 'Music', url: 'https://www.visit-montenegro.com', imageUrl: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&q=80' },
-      { id: 'e3', name: "Fasinada – Boka Night", date: '2026-08-15', time: '21:00:00', venue: 'Bay of Kotor, Perast', category: 'Cultural', url: 'https://www.visit-montenegro.com', imageUrl: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=80' },
+      { id: 'e1', name: 'Kotor Carnival (Kotorski Karneval)', date: '2026-02-14', time: '14:00:00', venue: 'Kotor Old Town, Arms Square', category: 'Cultural', url: 'https://www.kotorkarneval.me', imageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&q=80' },
+      { id: 'e2', name: 'Kotor Art – International Summer Festival', date: '2026-08-22', time: '20:00:00', venue: 'St. Tryphon Cathedral Square & Old Town', category: 'Music', url: 'https://www.kotorart.me', imageUrl: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&q=80' },
+      { id: 'e3', name: 'Fasinada – Boka Navy Feast (Bokeljska Noć)', date: '2026-08-15', time: '21:00:00', venue: 'Bay of Kotor, Perast', category: 'Cultural', url: 'https://www.bokajskamornarica.me', imageUrl: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=80' },
     ],
     naples: [
       { id: 'e1', name: 'Napoli Pizza Village', date: '2026-06-06', time: '12:00:00', venue: 'Lungomare Caracciolo, Naples Seafront', category: 'Food & Drink', url: 'https://www.pizzavillage.it', imageUrl: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80', priceRange: 'Free' },
@@ -171,9 +172,9 @@ function getDemoEvents(city: string): Event[] {
       { id: 'e2', name: 'Palermo International Puppet Festival', date: '2026-05-16', time: '10:00:00', venue: 'Teatro Massimo Bellini area', category: 'Arts', url: 'https://www.comune.palermo.it', imageUrl: 'https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=400&q=80' },
     ],
     porto: [
-      { id: 'e1', name: 'Festa de São João do Porto', date: '2026-06-23', time: '20:00:00', venue: 'Throughout Porto — streets, bridges', category: 'Cultural', url: 'https://www.visitporto.travel', imageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&q=80', priceRange: 'Free' },
+      { id: 'e1', name: 'Festa de São João do Porto', date: '2026-06-23', time: '20:00:00', venue: 'Throughout Porto — streets, bridges', category: 'Cultural', url: 'https://www.festadesaojoao.pt', imageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&q=80', priceRange: 'Free' },
       { id: 'e2', name: 'NOS Primavera Sound Porto', date: '2026-06-04', time: '15:00:00', venue: 'Parque da Cidade, Porto', category: 'Music', url: 'https://www.nosprimaverasound.com', imageUrl: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&q=80', priceRange: '€85–€250' },
-      { id: 'e3', name: 'Porto Wine Fest', date: '2026-09-18', time: '17:00:00', venue: 'Palácio de Cristal Gardens', category: 'Food & Drink', url: 'https://www.visitporto.travel', imageUrl: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80', priceRange: '€20–€45' },
+      { id: 'e3', name: 'Porto Wine Fest', date: '2026-09-18', time: '17:00:00', venue: 'Palácio de Cristal Gardens', category: 'Food & Drink', url: 'https://www.portowinefest.pt', imageUrl: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80', priceRange: '€20–€45' },
     ],
     antalya: [
       { id: 'e1', name: 'Aspendos International Opera & Ballet Festival', date: '2026-06-12', time: '20:30:00', venue: 'Aspendos Roman Theatre (45 min from Antalya)', category: 'Arts', url: 'https://www.aspendosfestival.gov.tr', imageUrl: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&q=80', priceRange: '€30–€120' },
@@ -229,9 +230,7 @@ function getDemoEvents(city: string): Event[] {
     ],
   }
 
-  return demos[city.toLowerCase()] || [
-    { id: 'e1', name: 'International Food & Wine Festival', date: '2026-07-12', time: '12:00:00', venue: 'City Central Park', category: 'Food & Drink', url: '#', imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80' },
-    { id: 'e2', name: 'Summer Jazz Series', date: '2026-07-18', time: '20:00:00', venue: 'Riverside Amphitheater', category: 'Music', url: '#', imageUrl: 'https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=400&q=80' },
-    { id: 'e3', name: 'Night Market: Artisan Crafts', date: '2026-07-25', time: '17:00:00', venue: 'Historic District', category: 'Market', url: '#', imageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&q=80' },
-  ]
+  const cityEvents = demos[city.toLowerCase()]
+  if (!cityEvents) return []
+  return cityEvents.map(e => ({ ...e, curated: true as const }))
 }

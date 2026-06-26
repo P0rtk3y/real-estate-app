@@ -35,12 +35,16 @@ export default function EventsWidget({ events, city }: { events: Event[]; city: 
     )
   }
 
+  const isCurated = events.every(e => e.curated)
+
   return (
     <div className="bg-white rounded-2xl border border-amber-100 shadow-sm overflow-hidden">
       <div className="p-4 border-b border-amber-50 flex items-center gap-2">
         <Calendar className="w-5 h-5" style={{ color: '#C8281A' }} />
         <h3 className="font-bold text-gray-900">Upcoming Events</h3>
-        <span className="ml-auto text-xs text-gray-400">via Ticketmaster · Eventbrite</span>
+        <span className="ml-auto text-xs text-gray-400">
+          {isCurated ? "🛵 Bao's Curated Picks" : "via Ticketmaster · Eventbrite"}
+        </span>
       </div>
 
       <div className="divide-y divide-amber-50">

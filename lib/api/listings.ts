@@ -21,6 +21,13 @@ const IDEALISTA_CITIES: Record<string, 'it' | 'es' | 'pt'> = {
   malaga: 'es',
 }
 
+// Georgian cities covered by MyHome.ge (city IDs from myhome.ge internal API)
+const MYHOME_CITIES: Record<string, number> = {
+  batumi: 8,
+  tbilisi: 95,
+  kutaisi: 24,
+}
+
 // US/CA cities that Realtor.com covers well
 const REALTOR_CITIES = new Set([
   'miami', 'new york', 'los angeles', 'chicago', 'san francisco',
@@ -150,14 +157,24 @@ async function normalizeRealtor(item: RealtorListing, cityQuery: string, prefs: 
 }
 
 export async function fetchListings(city: string, prefs: UserPreferences): Promise<Listing[]> {
-  if (!RAPIDAPI_KEY) return []
-
   const cityLower = city.toLowerCase()
 
+  // Priority 1: local Georgian portal (no RapidAPI key needed)
+  if (MYHOME_CITIES[cityLower] !== undefined) {
+    const results = await fetchMyHomeGe(city, MYHOME_CITIES[cityLower], prefs)
+    if (results.length > 0) return results
+  }
+
+  if (!RAPIDAPI_KEY) return []
+
+  // Priority 2: Idealista for Spain / Italy / Portugal
   if (IDEALISTA_CITIES[cityLower]) {
     const results = await fetchIdealista(city, IDEALISTA_CITIES[cityLower], prefs)
     if (results.length > 0) return results
-  } else if (REALTOR_CITIES.has(cityLower)) {
+  }
+
+  // Priority 3: Realtor.com for US/CA only as last resort
+  if (REALTOR_CITIES.has(cityLower)) {
     const results = await fetchRealtor(city, prefs)
     if (results.length > 0) return results
   }
@@ -303,6 +320,126 @@ async function fetchIdealista(city: string, country: 'it' | 'es' | 'pt', prefs: 
     return await Promise.all(items.slice(0, 12).map(item => normalizeIdealista(item, city, country, prefs)))
   } catch (err) {
     console.error('Idealista fetch failed:', err)
+    return []
+  }
+}
+
+// ── MyHome.ge (Georgia) ───────────────────────────────────────────────────────
+
+interface MyHomeStatement {
+  statementId?: number
+  statement_id?: number
+  price?: number
+  currencyId?: number
+  currency_id?: number
+  roomsCount?: number
+  rooms?: number
+  bathroomsCount?: number
+  bathrooms?: number
+  area?: number
+  floor?: number
+  floorsCount?: number
+  floors_count?: number
+  address?: string
+  comment?: string
+  commentEng?: string
+  comment_eng?: string
+  urlEng?: string
+  url?: string
+  photos?: Array<{ fileName?: string; file_name?: string }>
+}
+
+async function normalizeMyHomeGe(item: MyHomeStatement, cityName: string, prefs: UserPreferences): Promise<Listing> {
+  const features: Listing['features'] = []
+  const floor = item.floor || 0
+  const totalFloors = item.floorsCount || item.floors_count || 0
+  if (floor > 4) features.push('high_floor')
+  const descEn = (item.commentEng || item.comment_eng || '').toLowerCase()
+  const descGe = (item.comment || '').toLowerCase()
+  const combined = descEn + ' ' + descGe
+  if (combined.includes('sea') || combined.includes('ocean') || combined.includes('black sea') || combined.includes('შავი ზღვა')) features.push('ocean_view')
+  if (combined.includes('mountain') || combined.includes('მთა')) features.push('mountain_view')
+  if (combined.includes('city view') || combined.includes('panoram')) features.push('city_view')
+  if (combined.includes('balcon') || combined.includes('terrace') || combined.includes('ბალკონი')) features.push('balcony')
+  if (combined.includes('pool') || combined.includes('basin') || combined.includes('აუზი')) features.push('pool')
+  if (combined.includes('gym') || combined.includes('fitness')) features.push('gym')
+  if (combined.includes('park') || combined.includes('garage') || combined.includes('გარაჟი')) features.push('parking')
+  if (combined.includes('new') || combined.includes('modern') || combined.includes('renovated') || combined.includes('ახალი')) features.push('modern')
+  if (combined.includes('historic') || combined.includes('old building')) features.push('historic')
+
+  // Currency: 1=GEL, 2=USD, 3=EUR
+  const currencyMap: Record<number, string> = { 1: 'GEL', 2: 'USD', 3: 'EUR' }
+  const fromCurrency = currencyMap[item.currencyId || item.currency_id || 2] || 'USD'
+  const targetCurrency = prefs.currency || 'USD'
+  const rawPrice = item.price || 0
+  const price = rawPrice ? await convertPrice(rawPrice, fromCurrency, targetCurrency) : 0
+  const priceDisplay = price ? formatPrice(price, targetCurrency) : 'Price on request'
+
+  const id = item.statementId || item.statement_id || 0
+  const photos: string[] = (item.photos || [])
+    .map(p => p.fileName || p.file_name || '')
+    .filter(Boolean)
+    .map(fn => `https://static.myhome.ge/photos/${id}/${fn}`)
+    .slice(0, 6)
+
+  const relUrl = item.urlEng || item.url || ''
+  const sourceUrl = relUrl.startsWith('http') ? relUrl : `https://www.myhome.ge${relUrl.startsWith('/') ? '' : '/en/'}${relUrl}`
+
+  const descriptionEn = item.commentEng || item.comment_eng || undefined
+  const descriptionGe = item.comment || undefined
+
+  return {
+    id: String(id || Math.random().toString(36).slice(2)),
+    source: 'MyHome.ge',
+    sourceUrl,
+    address: item.address || cityName,
+    city: cityName,
+    state: '',
+    country: 'GE',
+    price,
+    priceDisplay,
+    listingType: 'buy',
+    beds: item.roomsCount || item.rooms || 0,
+    baths: item.bathroomsCount || item.bathrooms || 0,
+    sqft: item.area ? Math.round(item.area * 10.764) : 0,
+    photos,
+    features,
+    scoutScore: computeScoutScore(features, prefs),
+    propertyType: 'apartment',
+    floor,
+    totalFloors,
+    description: descriptionEn,
+    originalDescription: descriptionGe !== descriptionEn ? descriptionGe : undefined,
+    originalLanguage: 'ka',
+  }
+}
+
+async function fetchMyHomeGe(city: string, cityId: number, prefs: UserPreferences): Promise<Listing[]> {
+  try {
+    const url = new URL('https://api.myhome.ge/Statement/GetStatements')
+    url.searchParams.set('AdTypeId', '1')
+    url.searchParams.set('RealEstateTypeId', '1')
+    url.searchParams.set('cityIdList', String(cityId))
+    url.searchParams.set('Page', '1')
+    url.searchParams.set('PageSize', '12')
+    url.searchParams.set('languageId', '2')
+    if (prefs.bedrooms) url.searchParams.set('roomsCountFrom', String(prefs.bedrooms))
+    if (prefs.maxPrice) url.searchParams.set('priceTo', String(prefs.maxPrice))
+    if (prefs.minPrice) url.searchParams.set('priceFrom', String(prefs.minPrice))
+
+    const res = await fetch(url.toString(), {
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      next: { revalidate: 3600 },
+    })
+    if (!res.ok) {
+      console.error('MyHome.ge fetch failed:', res.status)
+      return []
+    }
+    const data = await res.json()
+    const items: MyHomeStatement[] = data?.data?.statements || data?.statements || data?.data?.Items || data?.Items || []
+    return await Promise.all(items.slice(0, 12).map(item => normalizeMyHomeGe(item, city, prefs)))
+  } catch (err) {
+    console.error('MyHome.ge fetch failed:', err)
     return []
   }
 }

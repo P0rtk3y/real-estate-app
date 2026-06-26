@@ -1,6 +1,6 @@
 export interface Listing {
   id: string
-  source: 'Realtor.com' | 'Idealista' | 'Demo'
+  source: 'Realtor.com' | 'Idealista' | 'MyHome.ge' | 'SS.ge' | 'Demo'
   sourceUrl: string
   address: string | undefined
   city: string
@@ -20,6 +20,8 @@ export interface Listing {
   propertyType: string
   yearBuilt?: number
   description?: string
+  originalDescription?: string
+  originalLanguage?: string
   floor?: number
   totalFloors?: number
 }
@@ -77,6 +79,7 @@ export interface Event {
   url: string
   imageUrl?: string
   priceRange?: string
+  curated?: boolean
 }
 
 export interface Restaurant {
