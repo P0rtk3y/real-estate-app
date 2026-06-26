@@ -1,13 +1,42 @@
 'use client'
-import { ScoutInsight } from '@/lib/types'
-import { MapPin, Lightbulb, Utensils, Cloud } from 'lucide-react'
+import { useState } from 'react'
+import { ScoutInsight, Listing, CityPortal } from '@/lib/types'
+import { MapPin, Lightbulb, Utensils, Cloud, ExternalLink, Search } from 'lucide-react'
+import ListingCard from '@/components/ListingCard'
 
 interface Props {
   city: string
   insight: ScoutInsight
+  listings: Listing[]
+  portals: CityPortal[]
 }
 
-export default function ScoutReport({ city, insight }: Props) {
+function neighborhoodSearchLinks(name: string, city: string, portals: CityPortal[]) {
+  const q = encodeURIComponent(`${name} ${city}`)
+  const links = [
+    { label: 'Zillow', href: `https://www.zillow.com/homes/${encodeURIComponent(name + ' ' + city)}_rb/`, color: 'border-blue-200 text-blue-700 hover:bg-blue-50' },
+    { label: 'Realtor.com', href: `https://www.realtor.com/realestateandhomes-search/${encodeURIComponent(city)}/?neighborhoods=${encodeURIComponent(name)}`, color: 'border-red-200 text-red-700 hover:bg-red-50' },
+    { label: 'Google Maps', href: `https://www.google.com/maps/search/apartments+${q}`, color: 'border-green-200 text-green-700 hover:bg-green-50' },
+    ...portals.slice(0, 1).map(p => ({
+      label: p.name, href: p.url, color: 'border-amber-200 text-amber-700 hover:bg-amber-50'
+    })),
+  ]
+  return links
+}
+
+export default function ScoutReport({ city, insight, listings, portals }: Props) {
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null)
+
+  const medals = ['🥇', '🥈', '🥉', '🌿', '✨']
+
+  function getNeighborhoodListings(name: string): Listing[] {
+    const lower = name.toLowerCase()
+    return listings.filter(l =>
+      (l.address || '').toLowerCase().includes(lower) ||
+      (l.description || '').toLowerCase().includes(lower)
+    )
+  }
+
   return (
     <div className="bg-white rounded-2xl border border-amber-100 shadow-sm overflow-hidden">
       {/* Header */}
@@ -84,22 +113,73 @@ export default function ScoutReport({ city, insight }: Props) {
           </ul>
         </div>
 
-        {/* Best Neighborhoods */}
+        {/* Best Neighborhoods — clickable, with listings */}
         <div>
-          <h3 className="font-bold text-gray-900 mb-3">
+          <h3 className="font-bold text-gray-900 mb-1">
             🏘️ Best Neighborhoods for Your Vibe
           </h3>
+          <p className="text-xs text-gray-400 mb-3">Tap a neighborhood to see available properties</p>
           <div className="grid gap-2.5">
             {insight.bestNeighborhoods.map((n, i) => {
               const [name, desc] = n.includes(' — ') ? n.split(' — ') : [n, '']
-              const medals = ['🥇', '🥈', '🥉', '🌿']
+              const isSelected = selectedIdx === i
+              const matched = getNeighborhoodListings(name)
+              const searchLinks = neighborhoodSearchLinks(name, city, portals)
+
               return (
-                <div key={i} className="flex gap-3 rounded-2xl p-3.5 border" style={{ background: 'linear-gradient(to right, #FFF5ED, #FFF0E0)', borderColor: '#F4C08A' }}>
-                  <div className="text-xl flex-shrink-0 mt-0.5">{medals[i] || '🏡'}</div>
-                  <div>
-                    <div className="font-semibold text-gray-900 text-sm">{name}</div>
-                    {desc && <div className="text-xs text-gray-600 mt-0.5">{desc}</div>}
-                  </div>
+                <div key={i}>
+                  <button
+                    onClick={() => setSelectedIdx(isSelected ? null : i)}
+                    className="w-full text-left flex gap-3 rounded-2xl p-3.5 border transition-all"
+                    style={{
+                      background: isSelected
+                        ? 'linear-gradient(to right, #FEF3C7, #FDE68A)'
+                        : 'linear-gradient(to right, #FFF5ED, #FFF0E0)',
+                      borderColor: isSelected ? '#F59E0B' : '#F4C08A',
+                    }}
+                  >
+                    <div className="text-xl flex-shrink-0 mt-0.5">{medals[i] || '🏡'}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-gray-900 text-sm">{name}</div>
+                      {desc && <div className="text-xs text-gray-600 mt-0.5">{desc}</div>}
+                    </div>
+                    <div className="flex-shrink-0 text-xs text-gray-400 self-center">
+                      {isSelected ? '▲' : '▼'}
+                    </div>
+                  </button>
+
+                  {isSelected && (
+                    <div className="mt-2 rounded-2xl border border-amber-100 bg-amber-50/30 p-4">
+                      {matched.length > 0 ? (
+                        <>
+                          <p className="text-xs text-gray-500 mb-3 font-medium">{matched.length} propert{matched.length === 1 ? 'y' : 'ies'} found in {name}</p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {matched.slice(0, 4).map(listing => (
+                              <ListingCard key={listing.id} listing={listing} />
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        <p className="text-xs text-gray-500 mb-3">No direct listings found for {name} — search on local portals:</p>
+                      )}
+
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {searchLinks.map(link => (
+                          <a
+                            key={link.label}
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-colors ${link.color}`}
+                          >
+                            <Search className="w-3 h-3" />
+                            {link.label}
+                            <ExternalLink className="w-3 h-3 opacity-60" />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )
             })}
@@ -123,6 +203,34 @@ export default function ScoutReport({ city, insight }: Props) {
             <p className="text-xs text-blue-900 leading-relaxed">{insight.weatherNote}</p>
           </div>
         </div>
+
+        {/* Local portals */}
+        {portals.length > 0 && (
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1 flex items-center gap-2">
+              <span>🏦</span> Verified Local Property Portals
+            </h3>
+            <p className="text-xs text-gray-500 mb-3">Trusted sites locals use — often have listings not found elsewhere.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {portals.map(portal => (
+                <a
+                  key={portal.name}
+                  href={portal.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 rounded-xl border border-amber-100 hover:border-amber-300 hover:bg-amber-50 transition-all group"
+                >
+                  <span className="text-2xl flex-shrink-0">{portal.flag}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold text-sm text-gray-900 group-hover:text-red-700 transition-colors">{portal.name}</div>
+                    <div className="text-xs text-gray-500 truncate">{portal.description}</div>
+                  </div>
+                  <span className="text-gray-300 group-hover:text-red-400 transition-colors text-xs">↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="border-t border-amber-100 pt-4 flex items-start gap-2">
           <span className="text-lg flex-shrink-0">⚠️</span>
