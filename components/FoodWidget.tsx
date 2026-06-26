@@ -17,7 +17,7 @@ export default function FoodWidget({ restaurants }: { restaurants: Restaurant[] 
       <div className="p-4 border-b border-amber-50 flex items-center gap-2">
         <span className="text-xl">🍜</span>
         <h3 className="font-bold text-gray-900">Bao&apos;s Food Hotspots</h3>
-        <span className="ml-auto text-xs text-gray-400">via Yelp</span>
+        <span className="ml-auto text-xs text-gray-400">via Yelp · Foursquare</span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 divide-y divide-amber-50">
@@ -37,13 +37,21 @@ export default function FoodWidget({ restaurants }: { restaurants: Restaurant[] 
             )}
 
             <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between">
-                <div className="font-semibold text-gray-900 text-sm truncate">{r.name}</div>
+              <div className="flex items-center justify-between gap-1">
                 <a
                   href={r.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="opacity-0 group-hover:opacity-100 transition-opacity ml-1 flex-shrink-0"
+                  className="font-semibold text-gray-900 text-sm truncate hover:underline"
+                  style={{ color: 'inherit' }}
+                >
+                  {r.name}
+                </a>
+                <a
+                  href={r.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-shrink-0"
                   style={{ color: '#C8281A' }}
                 >
                   <ExternalLink className="w-3 h-3" />

@@ -77,6 +77,7 @@ interface FoursquarePlace {
   price?: number
   location?: { formatted_address?: string }
   photos?: Array<{ prefix: string; suffix: string }>
+  website?: string
 }
 
 const FSQ_PRICE: Record<number, string> = { 1: '$', 2: '$$', 3: '$$$', 4: '$$$$' }
@@ -88,7 +89,7 @@ async function fetchFoursquare(city: string): Promise<Restaurant[]> {
     url.searchParams.set('categories', '13065') // Food & Drink
     url.searchParams.set('sort', 'RATING')
     url.searchParams.set('limit', '6')
-    url.searchParams.set('fields', 'fsq_id,name,categories,rating,stats,price,location,photos')
+    url.searchParams.set('fields', 'fsq_id,name,categories,rating,stats,price,location,photos,website')
 
     const res = await fetch(url.toString(), {
       headers: { Authorization: FSQ_KEY },
@@ -108,7 +109,7 @@ async function fetchFoursquare(city: string): Promise<Restaurant[]> {
         priceLevel: FSQ_PRICE[p.price || 2] || '$$',
         address: p.location?.formatted_address || '',
         imageUrl: photo ? `${photo.prefix}300x200${photo.suffix}` : undefined,
-        url: `https://foursquare.com/v/${p.fsq_id}`,
+        url: p.website || `https://foursquare.com/v/${p.fsq_id}`,
       }
     })
   } catch {
